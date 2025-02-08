@@ -1,3 +1,4 @@
+import { CardAnalysis } from "@/components/CardAnalysis";
 import { Header } from "@/components/Header";
 
 export default function HomePage() {
@@ -5,7 +6,7 @@ export default function HomePage() {
     <>
       <Header isLogged={true} />
 
-      <main className="min-h-screen flex flex-col items-center justify-center bg-background text-gray">
+      <main className="min-h-screen flex flex-row items-center justify-center bg-background text-gray">
         <section className="flex flex-col items-center p-8 bg-white shadow-lg rounded-lg">
           <h1 className="text-4xl font-bold text-blackGray mb-4">EmotiPet</h1>
           <p className="text-lg text-whiteGray mb-6">
@@ -15,6 +16,7 @@ export default function HomePage() {
             Clique aqui
           </button>
         </section>
+        <CardAnalysis />
       </main>
     </>
   );
