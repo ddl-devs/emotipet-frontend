@@ -20,8 +20,8 @@ export function CardAnalysis() {
           objectFit="cover"
           className="absolute inset-0"
         />
-        <div className="absolute top-4 left-4 bg-blue text-white px-4 py-2 rounded-xl">
-          <h3 className="text-xs font-bold">Bolota</h3>
+        <div className="absolute top-4 left-4 bg-blue text-white px-4 py-1 rounded-xl">
+          <h3 className="text-sm font-bold">Bolota</h3>
         </div>
       </div>
 
