@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import style from "@/components/CardAnalysis/style.module.css";
 
 export function CardAnalysis() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -12,7 +13,7 @@ export function CardAnalysis() {
       onMouseLeave={() => setIsModalOpen(false)}
       className="relative inline-block"
     >
-      <div className="relative flex flex-col items-center p-24 bg-white shadow-lg rounded-lg overflow-hidden">
+      <div className="relative flex flex-col items-center p-24 bg-white shadow-lg rounded-2xl overflow-hidden z-10">
         <Image
           src="/assets/images/bolota.png"
           alt="Bolota"
@@ -20,15 +21,15 @@ export function CardAnalysis() {
           objectFit="cover"
           className="absolute inset-0"
         />
-        <div className="absolute top-4 left-4 bg-blue text-white px-4 py-1 rounded-xl">
+        <div className="absolute top-2 left-2 bg-blue text-white px-4 py-1 rounded-2xl">
           <h3 className="text-sm font-bold">Bolota</h3>
         </div>
       </div>
 
       {isModalOpen && (
-        <div className="absolute top-0 left-48 w-40 bg-white shadow-lg z-50 p-4 rounded-2xl">
-          <h3 className="text-sm font-bold">Análise de emoção</h3>
-          <p className="text-green">Feliz 😊</p>
+        <div className={style.cardAnalysisContent}>
+          <h3 className="text-base font-bold">Análise de emoção</h3>
+          <p className="text-green font-semibold">Feliz 😊</p>
         </div>
       )}
     </div>

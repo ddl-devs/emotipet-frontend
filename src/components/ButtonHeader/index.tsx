@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
+import style from "@/components/ButtonHeader/style.module.css";
 
 export function ButtonHeader() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,7 +27,38 @@ export function ButtonHeader() {
   };
 
   return (
-    <>
+    <div className="flex items-center gap-1 align-top">
+      {isModalOpen && (
+        <div
+          ref={modalRef}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className={style.headerButtonContent}
+        >
+          <div className="flex items-center gap-2 mb-3 hover:opacity-60 transition-opacity duration-100">
+            <Link href="/home" className="text-purple text-xl font-bold flex items-center gap-2 flex-nowrap">
+              <Image
+                src="/assets/images/profile.png"
+                alt="modal"
+                width={20}
+                height={20}
+              />
+                Perfil
+            </Link>
+          </div>
+          <div className="flex items-center gap-2 hover:opacity-60 transition-opacity duration-100">
+            <Link href="/home" className="text-red text-xl font-bold flex items-center gap-2 flex-nowrap">
+              <Image
+                src="/assets/images/exit.png"
+                alt="modal"
+                width={20}
+                height={20}
+              />
+              Sair
+            </Link>
+          </div>
+        </div>
+      )}
       <button
         onMouseEnter={handleMouseEnterButton}
         onMouseLeave={handleMouseLeaveButton}
@@ -39,38 +71,6 @@ export function ButtonHeader() {
           height={50}
         />
       </button>
-
-      {isModalOpen && (
-        <div
-          ref={modalRef}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          className="fixed top-24 right-48 transform -translate-y-1/2 w-32 bg-white shadow-lg z-50 p-4 rounded-md"
-        >
-          <div className="flex items-center gap-2 mb-2">
-            <Image
-              src="/assets/images/profile.png"
-              alt="modal"
-              width={20}
-              height={20}
-            />
-            <Link href="/home" className="text-purple text-xl font-bold">
-              Perfil
-            </Link>
-          </div>
-          <div className="flex items-center gap-2">
-            <Image
-              src="/assets/images/exit.png"
-              alt="modal"
-              width={20}
-              height={20}
-            />
-            <Link href="/home" className="text-red text-xl font-bold">
-              Sair
-            </Link>
-          </div>
-        </div>
-      )}
-    </>
+    </div>
   );
 }

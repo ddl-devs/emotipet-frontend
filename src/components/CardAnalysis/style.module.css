@@ -1,0 +1,32 @@
+.cardAnalysisContent {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding: 5px 15px;
+    background-color: #ffffff;
+    border-radius: 0 15px 15px 0;
+    transform: translate(100%, -275%);
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.171);
+    animation: slideInFromLeft 0.2s ease-out;
+    height: 70px;
+    z-index: 0;
+
+    * {
+      margin: 0 0 5px 15px;
+      padding: 0;
+    }
+  }
+  @keyframes slideInFromLeft {
+    0% {
+      width: 0;
+      opacity: 0;
+    }
+    100% {
+      width: 185px;
+      opacity: 1;
+    }
+  }
+  
+  

@@ -14,6 +14,7 @@ export default {
         white: "var(--white)",
         blue: "var(--blue)",
         purple: "var(--purple)",
+        purpleHover: "var(--light-purple)",
         orange: "var(--orange)",
         gray: "var(--gray)",
         whiteGray: "var(--white-gray)",
