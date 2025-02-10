@@ -2,7 +2,7 @@ import "./globals.css";
 import { Mukta } from "next/font/google";
 
 const mukta = Mukta({
-  weight: ["400", "700"],
+  weight: ["200","300","400","700","800"],
   subsets: ["latin"],
 });
 
