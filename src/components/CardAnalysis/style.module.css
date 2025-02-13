@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: start;
-    padding: 5px 15px;
+    padding: 0px 15px;
     background-color: #ffffff;
     border-radius: 0 15px 15px 0;
     transform: translate(100%, -275%);
@@ -14,7 +14,7 @@
     z-index: 0;
 
     * {
-      margin: 0 0 5px 15px;
+      margin: 0 0 0px 15px;
       padding: 0;
     }
   }

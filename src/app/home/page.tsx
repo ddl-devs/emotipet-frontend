@@ -10,10 +10,14 @@ export default function HomePage() {
 
       <main className="min-h-screen flex flex-row items-center justify-between bg-background text-gray">
         
-        <div>
-          <MainImageIndex
+          <MainImageIndex/>
+          <Image 
+            src="/assets/images/rabo gato.png"
+            alt="Bolota"
+            width={436}
+            height={979}
+            className="absolute top-0 -right-5 z-0 "
           />
-        </div>
         
         <div className="absolute flex flex-col items-start justify-center left-1/2 top-60">
 
@@ -28,9 +32,10 @@ export default function HomePage() {
             <p className="text-2xl text-blue mb-3">
               Ultimas análises realizadas
             </p>
-            <div className="flex flex-row gap-8">
-              <CardAnalysis />
-              <CardAnalysis />
+            <div className="flex flex-row gap-2">
+              <CardAnalysis z_index={20}/>
+              <CardAnalysis z_index={10}/>
+              <CardAnalysis z_index={5}/>
             </div>
           </div>
 

@@ -11,10 +11,10 @@ interface HeaderProps {
 export function Header({ isLogged }: HeaderProps) {
   return (
     <div>
-      <header className="fixed top-0 right-0 left-0 flex items-center justify-between bg-background w-full h-fit px-32 py-4 z-20">
+      <header className="fixed top-0 right-0 left-0 flex items-center justify-between w-full h-fit px-32 py-4 z-20">
         <Link href="/home">
             <Image
-              src="/assets/images/logo.png"
+              src="/assets/svg/logo emotipet.svg"
               alt="EmotiPet"
               width={167}
               height={61}
@@ -23,7 +23,7 @@ export function Header({ isLogged }: HeaderProps) {
         {isLogged && (
           <div className="flex items-center gap-16 lg:gap-32">
             <Link
-              href="/home"
+              href="/user/id/pets"
               className="text-blue hover:text-blue-700 text-xl font-bold"
             >
               Meus pets
