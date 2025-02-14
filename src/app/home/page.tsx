@@ -2,21 +2,22 @@ import { CardAnalysis } from "@/components/CardAnalysis";
 import { MainImageIndex } from "@/components/MainImageIndex";
 import { Header } from "@/components/Header";
 import Image from "next/image";
+import style from "./style.module.css"
 
 export default function HomePage() {
   return (
     <>
       <Header isLogged={true} />
 
-      <main className="min-h-screen flex flex-row items-center justify-between bg-background text-gray">
+      <main className="min-h-screen flex flex-row items-center justify-between bg-background text-gray overflow-hidden">
         
           <MainImageIndex/>
           <Image 
             src="/assets/images/rabo gato.png"
             alt="Bolota"
-            width={436}
-            height={979}
-            className="absolute top-0 -right-5 z-0 "
+            width={205}
+            height={746}
+            className="absolute -top-10 right-0 z-0 overflow-hidden"
           />
         
         <div className="absolute flex flex-col items-start justify-center left-1/2 top-60">
@@ -32,10 +33,10 @@ export default function HomePage() {
             <p className="text-2xl text-blue mb-3">
               Ultimas análises realizadas
             </p>
-            <div className="flex flex-row gap-2">
-              <CardAnalysis z_index={20}/>
+            <div id={style.cards_analises} className="flex flex-row gap-2">
+              <CardAnalysis z_index={50}/>
+              <CardAnalysis z_index={30}/>
               <CardAnalysis z_index={10}/>
-              <CardAnalysis z_index={5}/>
             </div>
           </div>
 
