@@ -18,10 +18,10 @@ export function CardAnalysis({ z_index }: CardAnalysisProps) {
     <div
       onMouseEnter={() => setIsModalOpen(true)}
       onMouseLeave={() => setIsModalOpen(false)}
-      className={`relative inline-block z-${z_index}`}
+      className={`relative inline-block z${z_index}`}
     >
       <div
-        className={`relative flex flex-col items-center p-24 bg-white shadow-lg rounded-2xl overflow-hidden z-${z_index}`}
+        className={`relative flex flex-col items-center p-24 bg-white shadow-lg rounded-2xl overflow-hidden z${z_index}`}
       >
         <Image
           src="/assets/images/bolota.png"
@@ -36,7 +36,7 @@ export function CardAnalysis({ z_index }: CardAnalysisProps) {
       </div>
 
       {isModalOpen && (
-        <div className={`${style.cardAnalysisContent} z-${z_index - 10}`}>
+        <div className={`${style.cardAnalysisContent} z${z_index - 10}`}>
           <h3 className="text-base font-bold">Análise de emoção</h3>
           <p className="text-green font-semibold">Feliz 😊</p>
           <p className="text-whiteGray text-xs font-medium">25/02/2025</p>

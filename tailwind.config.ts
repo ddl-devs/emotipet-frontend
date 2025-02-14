@@ -23,6 +23,16 @@ export default {
         green: "var(--green)",
         red: "var(--red)",
       },
+      variants: {
+        extend: {
+          z50: "z-index: 50",
+          z40: "z-index: 40",
+          z30: "z-index: 30",
+          z20: "z-index: 20",
+          z10: "z-index: 10",
+          z0: "z-index: 0",
+        },
+      }
     },
   },
   plugins: [],
