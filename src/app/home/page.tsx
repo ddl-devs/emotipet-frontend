@@ -10,16 +10,9 @@ export default function HomePage() {
       <Header isLogged={true} />
 
       <main className="min-h-screen flex flex-row items-center justify-between bg-background text-gray overflow-hidden">
-        
-          <MainImageIndex/>
-          <Image 
-            src="/assets/images/rabo gato.png"
-            alt="Bolota"
-            width={205}
-            height={746}
-            className="absolute -top-10 right-0 z-0 overflow-hidden"
-          />
-        
+
+        <MainImageIndex/>
+
         <div className="absolute flex flex-col items-start justify-center left-1/2 top-60">
 
           <h1 className="text-5xl font-medium text-orange">
