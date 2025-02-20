@@ -11,9 +11,6 @@ interface CardAnalysisProps {
 export function CardAnalysis({ z_index }: CardAnalysisProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Defina a classe de z-index dinamicamente
-  const zIndexClass = ``;
-
   return (
     <div
       onMouseEnter={() => setIsModalOpen(true)}

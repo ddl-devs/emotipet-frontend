@@ -7,7 +7,7 @@
   --foreground: #171717;
   --white: #FFFFFF;
   --blue: #4B9DFA;
-  --purple: #4B4BFA;
+  --purple: #5676DE;
   --orange: #FA8548;  
   --white-orange: #FFE2D2;
   --gray: #697078;
@@ -15,6 +15,7 @@
   --black-gray: #383838;
   --green: #2FBD45;
   --red: #FA484B;
+  --white-gray2: #F4F4F4;
 }
 
 .z50 {

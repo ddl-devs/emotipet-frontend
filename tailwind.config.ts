@@ -22,6 +22,7 @@ export default {
         blackGray: "var(--black-gray)",
         green: "var(--green)",
         red: "var(--red)",
+        whiteGray2: "var(--white-gray2)",
       },
       variants: {
         extend: {
