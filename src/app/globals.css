@@ -7,13 +7,34 @@
   --foreground: #171717;
   --white: #FFFFFF;
   --blue: #4B9DFA;
-  --purple: #4B4BFA;
+  --purple: #5676DE;
   --orange: #FA8548;  
+  --white-orange: #FFE2D2;
   --gray: #697078;
   --white-gray: #989898;
   --black-gray: #383838;
-  --green: #4AE060;
+  --green: #2FBD45;
   --red: #FA484B;
+  --white-gray2: #F4F4F4;
+}
+
+.z50 {
+  z-index: 50;
+}
+.z40 {
+  z-index: 40;
+}
+.z30 {
+  z-index: 30;
+}
+.z20 {
+  z-index: 20;
+}
+.z10 {
+  z-index: 10;
+}
+.z0 {
+  z-index: 0;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -1,22 +1,39 @@
 import { CardAnalysis } from "@/components/CardAnalysis";
+import { MainImageIndex } from "@/components/MainImageIndex";
 import { Header } from "@/components/Header";
+import Image from "next/image";
+import style from "./style.module.css"
 
 export default function HomePage() {
   return (
     <>
       <Header isLogged={true} />
 
-      <main className="min-h-screen flex flex-row items-center justify-center bg-background text-gray">
-        <section className="flex flex-col items-center p-8 bg-white shadow-lg rounded-lg">
-          <h1 className="text-4xl font-bold text-blackGray mb-4">EmotiPet</h1>
-          <p className="text-lg text-whiteGray mb-6">
-            Bem-vindo à Página Principal
-          </p>
-          <button className="px-6 py-3 bg-blue text-white rounded-lg hover:bg-blue transition">
-            Clique aqui
-          </button>
-        </section>
-        <CardAnalysis />
+      <main className="min-h-screen flex flex-row items-center justify-between bg-background text-gray overflow-hidden">
+
+        <MainImageIndex/>
+
+        <div className="absolute flex flex-col items-start justify-center left-1/2 top-60">
+
+          <h1 className="text-5xl font-medium text-orange">
+            Seja Bem-vindo(a)
+          </h1>
+          <h1 className="text-5xl font-bold text-orange">
+            Damião
+          </h1>
+
+          <div className="mt-20">
+            <p className="text-2xl text-blue mb-3">
+              Ultimas análises realizadas
+            </p>
+            <div id={style.cards_analises} className="flex flex-row gap-2">
+              <CardAnalysis z_index={50}/>
+              <CardAnalysis z_index={30}/>
+              <CardAnalysis z_index={10}/>
+            </div>
+          </div>
+
+        </div>
       </main>
     </>
   );
