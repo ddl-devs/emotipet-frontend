@@ -6,7 +6,9 @@ export default function PetPage() {
     <>
       <Header isLogged={true} />
       <main className="min-h-screen flex flex-col items-center justify-center bg-background text-gray">
-        <Profile />
+        <div>
+          <Profile />
+        </div>
       </main>
     </>
   );
