@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-
+import ProfileInput from "@/components/ProfileInput";
 
 export function Profile(){
 
@@ -22,13 +22,12 @@ export function Profile(){
                 </h2>
             </div>
 
-            <div className="flex h-auto mt-[158px] mb-[50px] max-w-[80%]">
-                <div>
-                    <p className="text-whiteGray text-sm font-medium">Raça:</p>
-                    <div className=" px-[10px] py-1 bg-whiteGray2 rounded-[10px]">
-                        <p className="text-purple text-lg font-semibold">Pastor Alemão</p>
-                    </div>
-                </div>
+            <div className="flex h-auto flex-wrap gap-4 mt-[158px] mb-[50px] max-w-[80%] items-center">
+                <ProfileInput id="raca" input="Pastor Alemão" label="Raça:" placeholder="Digite uma raça" wid="180px"></ProfileInput>
+                <ProfileInput id="data" input="24/02/2024 - 1 ano(s)" label="Data de Nascimento:" placeholder="Digite a data" wid="190px"></ProfileInput>
+                <ProfileInput id="peso" input="30kg" label="Peso:" placeholder="Digite o peso" wid="60px"></ProfileInput>
+                <ProfileInput id="sexo" input="Fêmea" label="Sexo:" placeholder="Digite o sexo" wid="80px"></ProfileInput>
+                <ProfileInput id="altura" input="60cm" label="Altura:" placeholder="Digite a altura" wid="60px"></ProfileInput>
             </div>
 
         </div>

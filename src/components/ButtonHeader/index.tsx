@@ -28,6 +28,19 @@ export function ButtonHeader() {
 
   return (
     <div className="flex items-center gap-1 align-top">
+      <button
+        onMouseEnter={handleMouseEnterButton}
+        onMouseLeave={handleMouseLeaveButton}
+        title="Open Modal"
+        className="flex items-center justify-center bg-primary rounded-full w-16 h-16"
+      >
+        <Image
+          src="/assets/images/buttonheader.png"
+          alt="botão com imagem da cara de um cachorro"
+          width={50}
+          height={50}
+        />
+      </button>
       {isModalOpen && (
         <div
           ref={modalRef}
@@ -59,18 +72,7 @@ export function ButtonHeader() {
           </div>
         </div>
       )}
-      <button
-        onMouseEnter={handleMouseEnterButton}
-        onMouseLeave={handleMouseLeaveButton}
-        className="flex items-center justify-center bg-primary rounded-full w-16 h-16"
-      >
-        <Image
-          src="/assets/images/buttonheader.png"
-          alt="botão com imagem da cara de um cachorro"
-          width={50}
-          height={50}
-        />
-      </button>
+      
     </div>
   );
 }
