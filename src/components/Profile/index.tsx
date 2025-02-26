@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 import ProfileInput from "@/components/ProfileInput";
 import EditButton from "@/components/EditButton";
+import DeleteButton from "@/components/DeleteButton";
+import style from "./style.module.css"
 
 export function Profile(){
 
@@ -20,10 +22,10 @@ export function Profile(){
     return (
         <div className="flex flex-row">
         
-            <div className={`relative flex bg-white shadow-lg max-w-[745px] min-w-[500px] h-auto justify-center items-center rounded-3xl border ${editable ? 'transition border-green border duration-500' : 'transition border-white border-opacity-100 border duration-500'}`}>
+            <div className={`relative flex bg-white shadow-lg w-[700px] h-auto justify-center items-center rounded-3xl ${editable ? style.profile : ''}`}>
                 
                 {editable &&
-                    <div className={`opacity-0 ${editable ? 'transition-opacity opacity-100 duration-500' : 'transition-opacity opacity-0'} bg-green absolute bottom-3 right-3 rounded-full flex items-center justify-center animate-fade-in`}>
+                    <div className={`${style.button} opacity-0 ${editable ? 'transition-opacity opacity-100 duration-500' : 'transition-opacity opacity-0'} bg-green absolute bottom-3 right-3 rounded-full flex items-center justify-center animate-fade-in`}>
                         <button onClick={handleEditFalse} className="text-lg text-white px-3 font-medium py-1">Salvar</button>
                     </div>
                 }
@@ -41,26 +43,18 @@ export function Profile(){
                     </h2>
                 </div>
 
-                <div className="flex h-auto flex-wrap gap-4 mt-[158px] mb-[50px] max-w-[80%] items-center">
-                    <ProfileInput editable={editable} id="raca" input="Pastor Alemão" label="Raça:" placeholder="Digite uma raça" wid="180px"></ProfileInput>
-                    <ProfileInput editable={editable} id="data" input="24/02/2024 - 1 ano(s)dsadsadas" label="Data de Nascimento:" placeholder="Digite a data" wid="190px"></ProfileInput>
-                    <ProfileInput editable={editable} id="peso" input="30kg" label="Peso:" placeholder="Digite o peso" wid="60px"></ProfileInput>
+                <div className="flex h-auto flex-wrap gap-5 mt-[158px] mb-[50px] max-w-[80%] items-center">
+                    <ProfileInput editable={editable} id="raca" input="Pastor Alemão" label="Raça:" placeholder="Digite uma raça" wid="200px"></ProfileInput>
+                    <ProfileInput editable={editable} id="data" input="24/02/2024" label="Data de Nascimento:" placeholder="Digite a data" wid="120px"></ProfileInput>
+                    <ProfileInput editable={editable} id="peso" input="30kg" label="Peso:" placeholder="Digite o peso" wid="70px"></ProfileInput>
                     <ProfileInput editable={editable} id="sexo" input="Fêmea" label="Sexo:" placeholder="Digite o sexo" wid="80px"></ProfileInput>
-                    <ProfileInput editable={editable} id="altura" input="60cm" label="Altura:" placeholder="Digite a altura" wid="60px"></ProfileInput>
+                    <ProfileInput editable={editable} id="altura" input="60cm" label="Altura:" placeholder="Digite a altura" wid="70px"></ProfileInput>
                 </div>
 
             </div>
-            <div className="flex flex-col ml-3 mt-1">
+            <div className="absolute left-[calc(50%+350px)] flex flex-col ml-3 mt-1 gap-4">
                 <EditButton click={handleEditTrue}/>
-                <div className="mt-4">
-                    <Image 
-                        src="/assets/svg/DeletButton.svg"
-                        alt="Background"
-                        width={25}
-                        height={25}
-                        className="hover:cursor-pointer"
-                    />
-                </div>
+                <DeleteButton click={handleEditTrue}/>
             </div>
         </div>
   )

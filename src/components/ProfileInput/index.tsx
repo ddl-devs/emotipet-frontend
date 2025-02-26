@@ -16,7 +16,7 @@ export default function ProfileInput({label, input, id, placeholder, wid, editab
 
     return(
         <div>
-            <label htmlFor={id} className="text-whiteGray text-sm font-</div>medium">{label}</label>
+            <label htmlFor={id} className="text-whiteGray text-sm font-medium ml-1">{label}</label>
             <div style={{width: wid}} className="px-[10px] flex w-auto py-1 bg-whiteGray2 rounded-[10px]">
                 <input
                     readOnly={!editable}
