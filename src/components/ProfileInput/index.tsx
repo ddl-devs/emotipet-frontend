@@ -2,17 +2,18 @@
 
 
 interface InputProps {
-    label: string;
+    label?: string;
     input: string;
     id: string;
     placeholder: string;
     wid: string;
     editable?: boolean;
     color?: string;
+    classNm?: string;
 }
 
 
-export default function ProfileInput({label, input, id, placeholder, wid, editable = false, color}: InputProps){
+export default function ProfileInput({label, input, id, placeholder, wid, editable = false, color = 'purple', classNm = '' }: InputProps){
 
     return(
         <div>
@@ -23,7 +24,7 @@ export default function ProfileInput({label, input, id, placeholder, wid, editab
                     name={label}
                     id={id}
                     defaultValue={input}
-                    className={`w-full bg-transparent text-${editable ? 'blackGray' : 'purple'} text-lg font-semibold outline-none`}
+                    className={`text-center w-full bg-transparent text-${editable ? 'blackGray' : color} outline-none ${classNm ? classNm : 'text-lg font-semibold'}`}
                     title={label}
                     placeholder={placeholder}
                 />
