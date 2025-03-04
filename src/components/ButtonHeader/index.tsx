@@ -28,40 +28,10 @@ export function ButtonHeader() {
 
   return (
     <div className="flex items-center gap-1 align-top">
-      {isModalOpen && (
-        <div
-          ref={modalRef}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          className={style.headerButtonContent}
-        >
-          <div className="flex items-center gap-2 mb-3 hover:opacity-60 transition-opacity duration-100">
-            <Link href="/home" className="text-purple text-xl font-bold flex items-center gap-2 flex-nowrap">
-              <Image
-                src="/assets/images/profile.png"
-                alt="modal"
-                width={20}
-                height={20}
-              />
-                Perfil
-            </Link>
-          </div>
-          <div className="flex items-center gap-2 hover:opacity-60 transition-opacity duration-100">
-            <Link href="/home" className="text-red text-xl font-bold flex items-center gap-2 flex-nowrap">
-              <Image
-                src="/assets/images/exit.png"
-                alt="modal"
-                width={20}
-                height={20}
-              />
-              Sair
-            </Link>
-          </div>
-        </div>
-      )}
       <button
         onMouseEnter={handleMouseEnterButton}
         onMouseLeave={handleMouseLeaveButton}
+        title="Open Modal"
         className="flex items-center justify-center bg-primary rounded-full w-16 h-16"
       >
         <Image
@@ -71,6 +41,38 @@ export function ButtonHeader() {
           height={50}
         />
       </button>
+      {isModalOpen && (
+        <div
+          ref={modalRef}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className={style.headerButtonContent}
+        >
+          <div className="flex items-center gap-2 mb-3 hover:opacity-60 transition-opacity duration-100">
+            <Link href="/user/id" className="text-purple text-xl font-semibold flex items-center gap-2 flex-nowrap">
+              <Image
+                src="/assets/images/profile.png"
+                alt="modal"
+                width={18}
+                height={18}
+              />
+                Perfil
+            </Link>
+          </div>
+          <div className="flex items-center gap-2 hover:opacity-60 transition-opacity duration-100">
+            <Link href="/home" className="text-red text-xl font-semibold flex items-center gap-2 flex-nowrap">
+              <Image
+                src="/assets/images/exit.png"
+                alt="modal"
+                width={18}
+                height={18}
+              />
+              Sair
+            </Link>
+          </div>
+        </div>
+      )}
+      
     </div>
   );
 }
