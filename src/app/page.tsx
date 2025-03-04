@@ -1,6 +1,9 @@
+"use client";
 import { Header } from "@/components/Header";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function Login() {
+  const { user } = useAuth();
   return (
     <>
       <Header isLogged={true} />

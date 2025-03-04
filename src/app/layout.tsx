@@ -1,3 +1,4 @@
+import { AuthProvider } from "@/contexts/AuthContext";
 import "./globals.css";
 import { Mukta } from "next/font/google";
 
@@ -12,8 +13,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br">
-      <body className={`${mukta.className} w-full h-full m-0`}>{children}</body>
-    </html>
+    <AuthProvider>
+      <html lang="pt-br">
+        <body className={`${mukta.className} w-full h-full m-0`}>{children}</body>
+      </html>
+    </AuthProvider>
   );
 }
