@@ -32,6 +32,7 @@ export default {
           z20: "z-index: 20",
           z10: "z-index: 10",
           z0: "z-index: 0",
+          animationSlide: "var(--animation-slide)",
         },
       }
     },

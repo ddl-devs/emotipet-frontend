@@ -49,23 +49,23 @@ export function ButtonHeader() {
           className={style.headerButtonContent}
         >
           <div className="flex items-center gap-2 mb-3 hover:opacity-60 transition-opacity duration-100">
-            <Link href="/home" className="text-purple text-xl font-bold flex items-center gap-2 flex-nowrap">
+            <Link href="/user/id" className="text-purple text-xl font-semibold flex items-center gap-2 flex-nowrap">
               <Image
                 src="/assets/images/profile.png"
                 alt="modal"
-                width={20}
-                height={20}
+                width={18}
+                height={18}
               />
                 Perfil
             </Link>
           </div>
           <div className="flex items-center gap-2 hover:opacity-60 transition-opacity duration-100">
-            <Link href="/home" className="text-red text-xl font-bold flex items-center gap-2 flex-nowrap">
+            <Link href="/home" className="text-red text-xl font-semibold flex items-center gap-2 flex-nowrap">
               <Image
                 src="/assets/images/exit.png"
                 alt="modal"
-                width={20}
-                height={20}
+                width={18}
+                height={18}
               />
               Sair
             </Link>
