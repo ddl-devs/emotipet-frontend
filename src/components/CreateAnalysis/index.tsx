@@ -39,9 +39,7 @@ export default function CreateAnalysis({modal=false}: props) {
                                 className='rounded-full w-[140px] h-[140px] bg-gradient-to-br from-[#4B9DFA] to-[#5676DE]'
                                 />
                             ) : (
-                                <div className='rounded-full w-[140px] h-[140px] bg-gradient-to-br from-[#4B9DFA] to-[#5676DE]'>
-
-                                </div>
+                                <div className='rounded-full w-[140px] h-[140px] bg-gradient-to-br from-[#4B9DFA] to-[#5676DE]'></div>
                             )}
                             <div className='flex gap-4 justify-center items-center flex-col'>
                                 <label className='bg-blue p-2 px-3 rounded-full text-white font-semibold' htmlFor='profileImage'>Escolher foto do pet</label>

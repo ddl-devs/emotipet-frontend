@@ -33,7 +33,7 @@ const Register = () => {
         <div>
           <label htmlFor="email">Email:</label>
           <input
-            type="email"
+            type=""
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}

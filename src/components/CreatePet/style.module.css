@@ -1,0 +1,46 @@
+.button {
+    animation: button 0.3s ease-in-out;
+}
+
+@keyframes button {
+
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+    
+}
+
+.profile {
+    border: 1px solid;
+    border-color: transparent;
+    animation: border 0.8s 0.4s ease-in forwards, backg 0.8s ease-in-out;
+}
+
+@keyframes border {
+
+    0% { 
+    }
+    100% {
+        border-color: #2FBD45;
+    }
+    
+}
+
+@keyframes backg {
+    0% {
+        background-color: #ffffff;
+    }
+
+    50% {
+        background-color: #2fbd4452;
+    }
+
+    100% {
+        background-color: #ffffff;
+    }
+}
+
