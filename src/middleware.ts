@@ -5,10 +5,9 @@ const publicRoutes = ["/", "/register"];
 
 export function middleware(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
-  console.log("Token: ", token);
 
-  if (token) {
-    return NextResponse.next();
+  if (token && publicRoutes.includes(req.nextUrl.pathname)) {
+    return NextResponse.redirect(new URL("/home", req.url));
   }
 
   if (!token && !publicRoutes.includes(req.nextUrl.pathname)) {
