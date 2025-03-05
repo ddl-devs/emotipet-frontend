@@ -1,22 +1,24 @@
 import { cookies } from 'next/headers';
 
-const apiUrl = 'https://backend.damdevops.com.br/'; 
+const apiUrl = 'http://localhost:8080'; 
 
 const getToken = async () => {
-  const cookieStore = await cookies(); 
+  const cookieStore = await cookies();
   return cookieStore.get('token')?.value || null;
 };
 
 const apiClient = async (
   endpoint: string,
   options: RequestInit = {},
-  requiresAuth: boolean = true 
+  requiresAuth: boolean = true
 ) => {
   const token = await getToken();
-  const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
-  };
-  console.log(token, requiresAuth);
+  const headers: Record<string, string> = {};
+
+  if (!(options.body instanceof FormData)) {
+    headers['Content-Type'] = 'application/json';
+  }
+
   if (requiresAuth && token) {
     headers['Authorization'] = `Bearer ${token}`;
   }
@@ -25,17 +27,17 @@ const apiClient = async (
     ...options,
     headers: {
       ...headers,
-      ...options.headers, 
+      ...options.headers,
     },
   });
-  console.log(response);
+
   if (response.status === 401) {
     const refreshToken = await getRefreshToken();
     if (refreshToken) {
       const newToken = await refreshAccessToken(refreshToken);
       if (newToken) {
         updateTokenCookie(newToken);
-        return apiClient(endpoint, options, requiresAuth); 
+        return apiClient(endpoint, options, requiresAuth);
       }
     }
   }
@@ -71,7 +73,7 @@ const updateTokenCookie = async (token: string) => {
 };
 
 const getRefreshToken = async () => {
-  const cookieStore = await cookies(); 
+  const cookieStore = await cookies();
   return cookieStore.get('refreshToken')?.value || null;
 };
 
