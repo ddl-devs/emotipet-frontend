@@ -7,7 +7,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { authLogin } from '@/actions/login';
 import apiClient from '@/actions/client';
 
-const Login = () => {
+const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -28,7 +28,7 @@ const Login = () => {
 
   return (
     <div>
-      <h1>Login</h1>
+      <h1>Cadastrar usuário</h1>
       <form onSubmit={handleLogin}>
         <div>
           <label htmlFor="email">Email:</label>
@@ -63,4 +63,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

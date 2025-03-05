@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     deleteCookie('token');
     deleteCookie('refreshToken');
-    router.push('/login');
+    router.push('/');
   };
 
   useEffect(() => {

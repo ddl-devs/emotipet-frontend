@@ -28,12 +28,6 @@ export function Header({ isLogged }: HeaderProps) {
             >
               Meus pets
             </Link>
-            <Link
-              href="/home"
-              className="text-blue hover:text-blue-700 text-xl font-bold"
-            >
-              Análises
-            </Link>
           </div>
         )}
 
