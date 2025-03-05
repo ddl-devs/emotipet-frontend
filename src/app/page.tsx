@@ -6,7 +6,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { authLogin } from "@/actions/login";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
@@ -17,7 +17,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await authLogin(email, password);
+      const response = await authLogin(username, password);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Algo deu errado");
     }
@@ -36,16 +36,16 @@ export default function Login() {
             <form onSubmit={handleLogin}>
               <div className="mb-4">
                 <label
-                  htmlFor="email"
+                  htmlFor="username"
                   className="block text-gray-700 text-sm font-bold mb-2"
                 >
-                  Email:
+                  Usuário:
                 </label>
                 <input
-                  type="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  type="username"
+                  id="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   required
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
@@ -71,9 +71,6 @@ export default function Login() {
               </div>
               {error && <p style={{ color: "red" }}>{error}</p>}
             </form>
-
-            {user && <p>Você está logado como {user.name} VIVA MÃE CHINA</p>}
-            {user && <img src={user.photoUrl} alt={user.name} />}
             <button onClick={logout}>Logout</button>
           </div>
         </section>
