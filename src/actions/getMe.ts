@@ -2,9 +2,25 @@
 
 import apiClient from "./client";
 
-export async function getMe() {
+const fetchUserData = async (token: string) => {
+  if (!token) {
+    console.error("No token found");
+    return;
+  }
+
+  try {
     const response = await apiClient("/users/me", {
-        method: "GET",
-    })
-    return response;
-}
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const userData = await response;
+    return userData;
+  } catch (error) {
+    console.error("Failed to fetch user data:", error);
+  }
+};
+
+export default fetchUserData;
