@@ -13,10 +13,11 @@ describe("Edição do usuário spec", () => {
 
     cy.contains("Bem-vindo à Página de Login").should("not.exist");
 
+    // navegando até a tela de editar
     cy.get('img[alt="botão com imagem da cara de um cachorro"]').trigger(
       "mouseover"
     );
-
+    
     cy.get(".style-module__fIASuq__headerButtonContent").should("be.visible");
 
     cy.get(".style-module__fIASuq__headerButtonContent a")
@@ -25,6 +26,7 @@ describe("Edição do usuário spec", () => {
 
     cy.url().should("include", "/user/");
 
+    // habilitando a edição
     cy.get("button").contains("Editar").click();
 
     cy.get('input[id="firstName"]').should("have.value", "Cypress");
@@ -51,6 +53,8 @@ describe("Edição do usuário spec", () => {
     );
     cy.get('input[id="dateOfBirth"]').should("have.value", "1995-05-05");
 
+    // revertendo as alterações
+    // habilitando a edição
     cy.get("button").contains("Editar").click();
 
     cy.get('input[id="firstName"]').clear().type("Cypress");
