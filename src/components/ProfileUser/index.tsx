@@ -1,23 +1,64 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProfileInput from "@/components/ProfileInput";
 import EditButton from "@/components/EditButton";
 import style from "./style.module.css";
 import { useAuth } from "@/contexts/AuthContext";
+import { putUser } from "@/actions/putUser";
 
 export function ProfileUser() {
   const [editable, setEditable] = useState(false);
-  const [profileImage, setProfileImage] = useState("/assets/images/bolota.png");
+  const [profileImage, setProfileImage] = useState(
+    "/assets/images/user-profile.jpg"
+  );
   const { user } = useAuth();
+
+  const [formData, setFormData] = useState<{
+    firstName: string;
+    lastName: string;
+    email: string;
+    dateOfBirth: string;
+    profileImage: File | null;
+  }>({
+    firstName: user?.firstName ?? "",
+    lastName: user?.lastName ?? "",
+    email: user?.email ?? "",
+    dateOfBirth: user?.dateOfBirth ?? "",
+    profileImage: null,
+  });
+
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        firstName: user.firstName || "",
+        lastName: user.lastName || "",
+        email: user.email || "",
+        dateOfBirth: user.dateOfBirth || "",
+        profileImage: null,
+      });
+    }
+  }, [user]);
 
   const handleEditTrue = () => {
     setEditable(true);
   };
 
-  const handleEditFalse = () => {
+  const handleEditFalse = async () => {
     setEditable(false);
+    const form = new FormData();
+    form.append("firstName", formData.firstName);
+    form.append("lastName", formData.lastName);
+    form.append("email", formData.email);
+    form.append("dateOfBirth", formData.dateOfBirth);
+    if (formData.profileImage) {
+      form.append("photoUrl", formData.profileImage);
+    }
+    if (user?.id) {
+      await putUser(user?.id, form);
+      window.location.reload();
+    }
   };
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +66,13 @@ export function ProfileUser() {
       const file = event.target.files[0];
       const imageUrl = URL.createObjectURL(file);
       setProfileImage(imageUrl);
+      setFormData({ ...formData, profileImage: file });
     }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    setFormData({ ...formData, [id]: value });
   };
 
   return (
@@ -54,7 +101,7 @@ export function ProfileUser() {
 
         <div className="items-center justify-center flex flex-col relative -top-[70]">
           <Image
-            src={user?.photoUrl || profileImage} 
+            src={user?.photoUrl || profileImage}
             alt="Bolota"
             width={140}
             height={140}
@@ -82,20 +129,22 @@ export function ProfileUser() {
             <ProfileInput
               editable={editable}
               classNm="font-bold text-2xl"
-              input={user?.firstName ?? ""}
+              input={formData.firstName}
               placeholder="Insira um nome"
               wid="250px"
               color="orange"
               id="firstName"
+              onchange={handleInputChange}
             />
             <ProfileInput
               editable={editable}
               classNm="font-bold text-2xl"
-              input={user?.lastName ?? ""}
+              input={formData.lastName}
               placeholder="Insira um sobrenome"
               wid="250px"
               color="orange"
               id="lastName"
+              onchange={handleInputChange}
             />
           </div>
         </div>
@@ -106,18 +155,20 @@ export function ProfileUser() {
               editable={editable}
               type="email"
               id="email"
-              input={user?.email ?? ""}
+              input={formData.email}
               label="Email:"
               placeholder="Insira um email"
               wid="220px"
+              onchange={handleInputChange}
             ></ProfileInput>
             <ProfileInput
               editable={editable}
-              id="data"
-              input={user?.dateOfBirth ?? ""}
+              id="dateOfBirth"
+              input={formData.dateOfBirth}
               label="Data de Nascimento:"
               placeholder="Insira uma data"
               wid="220px"
+              onchange={handleInputChange}
             ></ProfileInput>
           </div>
           <div className="flex flex-wrap gap-5 items-start justify-start">
@@ -127,6 +178,7 @@ export function ProfileUser() {
               label="Username:"
               placeholder="Digite uma username"
               wid="220px"
+              onchange={handleInputChange}
             ></ProfileInput>
           </div>
         </div>
