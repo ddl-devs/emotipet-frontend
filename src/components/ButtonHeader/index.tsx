@@ -14,7 +14,7 @@ export function ButtonHeader() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState("");
   const modalRef = useRef<HTMLDivElement | null>(null);
-  const {setUser} = useAuth();
+  const { user, setUser } = useAuth();
   const router = useRouter();
 
   const handleMouseEnterButton = () => {
@@ -68,18 +68,24 @@ export function ButtonHeader() {
           className={style.headerButtonContent}
         >
           <div className="flex items-center gap-2 mb-3 hover:opacity-60 transition-opacity duration-100">
-            <Link href="/user/id" className="text-purple text-xl font-semibold flex items-center gap-2 flex-nowrap">
+            <Link
+              href={`/user/${user?.id}`}
+              className="text-purple text-xl font-semibold flex items-center gap-2 flex-nowrap"
+            >
               <Image
                 src="/assets/images/profile.png"
                 alt="modal"
                 width={18}
                 height={18}
               />
-                Perfil
+              Perfil
             </Link>
           </div>
           <div className="flex items-center gap-2 hover:opacity-60 transition-opacity duration-100">
-            <button onClick={handleLogout}  className="outline-none text-red text-xl font-semibold flex items-center gap-2 flex-nowrap">
+            <button
+              onClick={handleLogout}
+              className="outline-none text-red text-xl font-semibold flex items-center gap-2 flex-nowrap"
+            >
               <Image
                 src="/assets/images/exit.png"
                 alt="modal"
@@ -92,7 +98,6 @@ export function ButtonHeader() {
           <p>{error}</p>
         </div>
       )}
-      
     </div>
   );
 }
