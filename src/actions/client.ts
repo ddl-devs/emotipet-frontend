@@ -1,6 +1,7 @@
+'use server';
 import { cookies } from 'next/headers';
 
-const apiUrl = 'https://backend.damdevops.com.br'; 
+const apiUrl = 'http://localhost:8080';
 
 const getToken = async () => {
   const cookieStore = await cookies();
@@ -32,13 +33,27 @@ const apiClient = async (
   });
 
   if (response.status === 401) {
+    const wwwAuthenticate = response.headers.get('WWW-Authenticate');
+    if (wwwAuthenticate && wwwAuthenticate.includes('invalid_token')) {
+      const errorDescription = wwwAuthenticate.match(/error_description="([^"]+)"/)?.[1];
+      if (errorDescription && errorDescription.includes('Jwt expired')) {
+        throw new Error('Sessão expirada');
+      }
+    }
+
     const refreshToken = await getRefreshToken();
     if (refreshToken) {
-      const newToken = await refreshAccessToken(refreshToken);
-      if (newToken) {
-        updateTokenCookie(newToken);
-        return apiClient(endpoint, options, requiresAuth);
+      try {
+        const newToken = await refreshAccessToken(refreshToken);
+        if (newToken) {
+          await updateTokenCookie(newToken);
+          return apiClient(endpoint, options, requiresAuth);
+        }
+      } catch (error) {
+        throw new Error('Sessão expirada');
       }
+    } else {
+      throw new Error('Sessão expirada');
     }
   }
 
@@ -46,7 +61,9 @@ const apiClient = async (
     const errorData = await response.json();
     throw new Error(errorData.message || 'Algo deu errado');
   }
-
+  if (response.status === 204 || response.headers.get('Content-Length') === '0') {
+    return null; 
+  }
   return response.json();
 };
 
