@@ -34,29 +34,22 @@ const apiClient = async (
 
   if (response.status === 401) {
     const wwwAuthenticate = response.headers.get('WWW-Authenticate');
-    if (wwwAuthenticate && wwwAuthenticate.includes('invalid_token')) {
-      const errorDescription = wwwAuthenticate.match(/error_description="([^"]+)"/)?.[1];
-      if (errorDescription && errorDescription.includes('Jwt expired')) {
-        throw new Error('Sessão expirada');
-      }
-    }
-
-    const refreshToken = await getRefreshToken();
-    if (refreshToken) {
-      try {
-        const newToken = await refreshAccessToken(refreshToken);
-        if (newToken) {
-          await updateTokenCookie(newToken);
+    if (wwwAuthenticate?.includes('invalid_token') && wwwAuthenticate.includes('Jwt expired')) {
+      const refreshToken = await getRefreshToken();
+      if (refreshToken) {
+        try {
+          const tokens = await refreshAccessToken(refreshToken);
+          await updateTokens(tokens);
           return apiClient(endpoint, options, requiresAuth);
+        } catch {
+          throw new Error('Sessão expirada');
         }
-      } catch (error) {
+      } else {
         throw new Error('Sessão expirada');
       }
-    } else {
-      throw new Error('Sessão expirada');
     }
   }
-
+  
   if (!response.ok) {
     const errorData = await response.json();
     throw new Error(errorData.message || 'Algo deu errado');
@@ -68,7 +61,7 @@ const apiClient = async (
 };
 
 const refreshAccessToken = async (refreshToken: string) => {
-  const response = await fetch(`${apiUrl}/refresh-token`, {
+  const response = await fetch(`${apiUrl}/auth/refresh-token`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -81,12 +74,14 @@ const refreshAccessToken = async (refreshToken: string) => {
   }
 
   const data = await response.json();
-  return data.token;
+  return data;
 };
 
-const updateTokenCookie = async (token: string) => {
+const updateTokens = async (tokens: { token: string; refreshToken: string }) => {
+  console.log('updateTokens', tokens.token, tokens.refreshToken);
   const cookieStore = await cookies();
-  cookieStore.set('token', token, { path: '/', maxAge: 30 * 24 * 60 * 60 });
+  cookieStore.set('token', tokens.token, { path: '/', maxAge: 30 * 24 * 60 * 60 });
+  cookieStore.set('refreshToken', tokens.refreshToken, { path: '/', maxAge: 30 * 24 * 60 * 60 });
 };
 
 const getRefreshToken = async () => {
