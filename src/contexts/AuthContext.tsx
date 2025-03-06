@@ -38,13 +38,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const loadUser = async () => {
       try {
         if (token) {
-          try{
             const userData = await getMe();
-            setUser(userData);
-          }catch(err){
-            setUser(null);
-            logout();
-          }
+          // try{
+          //   const userData = await getMe();
+          //   setUser(userData);
+          // }catch(err){
+          //   setUser(null);
+          //   logout();
+          // }
         } else {
           setUser(null);
         }

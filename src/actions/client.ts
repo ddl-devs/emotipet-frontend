@@ -39,7 +39,7 @@ const apiClient = async (
       if (refreshToken) {
         try {
           const tokens = await refreshAccessToken(refreshToken);
-          await updateTokens(tokens);
+          await updateTokens(tokens.access_token, tokens.refresh_token);
           return apiClient(endpoint, options, requiresAuth);
         } catch {
           throw new Error('Sessão expirada');
@@ -49,7 +49,7 @@ const apiClient = async (
       }
     }
   }
-  
+
   if (!response.ok) {
     const errorData = await response.json();
     throw new Error(errorData.message || 'Algo deu errado');
@@ -77,11 +77,10 @@ const refreshAccessToken = async (refreshToken: string) => {
   return data;
 };
 
-const updateTokens = async (tokens: { token: string; refreshToken: string }) => {
-  console.log('updateTokens', tokens.token, tokens.refreshToken);
+const updateTokens = async (access_token: string, refresh_token: string) => {
   const cookieStore = await cookies();
-  cookieStore.set('token', tokens.token, { path: '/', maxAge: 30 * 24 * 60 * 60 });
-  cookieStore.set('refreshToken', tokens.refreshToken, { path: '/', maxAge: 30 * 24 * 60 * 60 });
+  cookieStore.set('token', access_token, { path: '/', maxAge: 30 * 24 * 60 * 60 });
+  cookieStore.set('refreshToken', refresh_token, { path: '/', maxAge: 30 * 24 * 60 * 60 });
 };
 
 const getRefreshToken = async () => {
