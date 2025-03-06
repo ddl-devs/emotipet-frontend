@@ -4,10 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import style from "@/components/ButtonHeader/style.module.css";
+import { logout } from "@/actions/logout";
+import router from "next/router";
 
 export function ButtonHeader() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [error, setError] = useState("");
   const modalRef = useRef<HTMLDivElement | null>(null);
 
   const handleMouseEnterButton = () => {
@@ -24,6 +26,15 @@ export function ButtonHeader() {
 
   const handleMouseLeave = () => {
     setIsModalOpen(false);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      router.push("/");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Erro ao sair");
+    }
   };
 
   return (
@@ -60,7 +71,7 @@ export function ButtonHeader() {
             </Link>
           </div>
           <div className="flex items-center gap-2 hover:opacity-60 transition-opacity duration-100">
-            <Link href="/home" className="text-red text-xl font-semibold flex items-center gap-2 flex-nowrap">
+            <button onClick={handleLogout}  className="outline-none text-red text-xl font-semibold flex items-center gap-2 flex-nowrap">
               <Image
                 src="/assets/images/exit.png"
                 alt="modal"
@@ -68,8 +79,9 @@ export function ButtonHeader() {
                 height={18}
               />
               Sair
-            </Link>
+            </button>
           </div>
+          <p>{error}</p>
         </div>
       )}
       
