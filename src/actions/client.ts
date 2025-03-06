@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 
-const apiUrl = 'http://localhost:8080'; 
+const apiUrl = 'https://backend.damdevops.com.br'; 
 
 const getToken = async () => {
   const cookieStore = await cookies();

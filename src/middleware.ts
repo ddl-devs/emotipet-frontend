@@ -19,4 +19,9 @@ export function middleware(req: NextRequest) {
 
 export const config = {
   matcher: ["/home", "/pet/:slug*", "/user/:userId*", "/", "/register"],
+  api: {
+    bodyParser: {
+      sizeLimit: '10mb', // Defina o limite de tamanho do corpo conforme necessário
+    },
+  },
 };

@@ -8,5 +8,8 @@ module.exports = {
         },
       },
     },
+    serverActions: {
+      bodySizeLimit: '2mb',
+    },
   },
-}
+};

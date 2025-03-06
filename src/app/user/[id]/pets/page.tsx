@@ -32,7 +32,7 @@ export default function PetsUserPage() {
           <div className="flex flex-row items-center justify-start w-full">
             <h1 className="text-5xl font-bold text-orange">Meus Pets</h1>
             <Link href={`/user/${1}/pets/add`}>
-              <button className="bg-blue text-white ml-8 font-semibold text-lg p-3 rounded-full hover:scale-110">Adicionar Pet</button>
+              <p className="bg-blue text-white ml-8 font-semibold text-lg p-3 px-4 rounded-full hover:scale-110">Adicionar Pet</p>
             </Link>
           </div>
 

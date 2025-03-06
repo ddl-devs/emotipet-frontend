@@ -28,7 +28,7 @@ export function CardAnalysis({ z_index }: CardAnalysisProps) {
           className="absolute inset-0"
         />
         <div className="absolute top-2 left-2 bg-blue text-white px-4 py-1 rounded-2xl">
-          <h3 className="text-sm font-bold">Bolota</h3>
+          <h3 className="text-base font-semibold">Bolota</h3>
         </div>
       </div>
 
