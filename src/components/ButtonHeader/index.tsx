@@ -5,12 +5,17 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import style from "@/components/ButtonHeader/style.module.css";
 import { logout } from "@/actions/logout";
-import router from "next/router";
+import { useRouter } from "next/navigation";
+import { deleteCookie } from "cookies-next";
+import { useAuth } from "@/contexts/AuthContext";
+import { set } from "date-fns";
 
 export function ButtonHeader() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState("");
   const modalRef = useRef<HTMLDivElement | null>(null);
+  const {setUser} = useAuth();
+  const router = useRouter();
 
   const handleMouseEnterButton = () => {
     setIsModalOpen(true);
@@ -31,6 +36,9 @@ export function ButtonHeader() {
   const handleLogout = async () => {
     try {
       await logout();
+      deleteCookie("token");
+      deleteCookie("refreshToken");
+      setUser(null);
       router.push("/");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erro ao sair");

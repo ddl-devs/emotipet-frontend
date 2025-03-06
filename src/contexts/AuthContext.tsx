@@ -7,6 +7,7 @@ import { getMe } from '@/actions/getMe';
 
 interface AuthContextType {
   user: any;
+  setUser: (user: User | null) => void;
   logout: () => void;
 }
 
@@ -37,8 +38,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const loadUser = async () => {
       try {
         if (token) {
-          const userData = await getMe();
-          setUser(userData);
+          try{
+            const userData = await getMe();
+            setUser(userData);
+          }catch(err){
+            setUser(null);
+            logout();
+          }
         } else {
           setUser(null);
         }
@@ -51,7 +57,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, [token]);
 
   return (
-    <AuthContext.Provider value={{ user, logout }}>
+    <AuthContext.Provider value={{ user, setUser, logout }}>
       {children}
     </AuthContext.Provider>
   );
