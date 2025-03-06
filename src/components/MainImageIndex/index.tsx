@@ -8,10 +8,10 @@ import Typewriter from 'typewriter-effect';
 
 export function MainImageIndex() {
   const [Text] = useState([
-    "Qual é a comida preferida do meu pet ?",
-    "Qual é a brincadeira preferida do meu pet ?",
-    "Como devo cuidar do meu pet ?",
-    "Como saber se meu pet está feliz ?",
+    "Qual é a comida preferida do meu pet?",
+    "Qual é a brincadeira preferida do meu pet?",
+    "Como devo cuidar do meu pet?",
+    "Como saber se meu pet está feliz?",
   ]);
 
   const [randomText, setRandomText] = useState("");
@@ -23,7 +23,7 @@ export function MainImageIndex() {
 
   return (
     <div className="relative self-start flex row-auto w-full h-full">
-      <div className="relative mt-60 ml-16 flex items-end justify-center">
+      <div className="relative mt-60 ml-8 flex items-end justify-center">
 
         <div className="absolute z-20 top-40 left-96 w-[52px] h-[52px]">
             <Image

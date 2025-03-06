@@ -20,17 +20,6 @@ export function Header({ isLogged }: HeaderProps) {
               height={61}
             />
         </Link>
-        {isLogged && (
-          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 gap-16 lg:gap-32">
-            <Link
-              href="/user/id/pets"
-              className="border border-blue rounded-xl py-1 px-3 text-blue hover:text-white hover:bg-blue text-xl font-bold"
-            >
-              Meus pets
-            </Link>
-          </div>
-        )}
-
         {isLogged && <ButtonHeader />}
       </header>
     </div>

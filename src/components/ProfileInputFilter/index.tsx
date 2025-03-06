@@ -16,6 +16,7 @@ interface InputProps {
   classNm?: string;
   type?: string;
   select?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   options?: { [key: string]: string };
 }
 
@@ -29,6 +30,7 @@ export default function ProfileInputFilter({
   placeholder,
   wid,
   classNm = "",
+  onChange,
 }: InputProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
@@ -49,14 +51,14 @@ export default function ProfileInputFilter({
             classNm ? classNm : "text-base font-semibold"
           }`}
           title={label}
-          
+          onChange={onChange}
         >
           <option className="text-gray text-base font-semibold" value="">{placeholder}</option>
-            {options && Object.entries(options).map(([key, value]) => (
+          {options && Object.entries(options).map(([key, value]) => (
             <option key={key} value={key}>
               {value}
             </option>
-            ))}
+          ))}
         </select>
       </div>
     </div>
@@ -71,7 +73,6 @@ export default function ProfileInputFilter({
       >
         <DatePicker
           selected={selectedDate}
-          onChange={(date: Date | null) => setSelectedDate(date)}
           className={`text-center w-full bg-transparent text-blue outline-none ${
             classNm ? classNm : "text-base font-semibold"
           }`}
@@ -99,6 +100,7 @@ export default function ProfileInputFilter({
           }`}
           title={label}
           placeholder={placeholder}
+          onChange={onChange}
         />
       </div>
     </div>
