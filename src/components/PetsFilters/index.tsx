@@ -20,7 +20,7 @@ export default function PetsFilters() {
 
   useEffect(() => {
     const timeouts: NodeJS.Timeout[] = [];
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 15; i++) {
       const timeout = setTimeout(() => {
         setVisibleCards((prev) => [...prev, i]);
       }, i * 200);
@@ -77,7 +77,7 @@ export default function PetsFilters() {
           </button>
         </div>
       </div>
-      <div className='flex justify-around items-center flex-col w-full'>
+      <div className='flex justify-start items-center flex-col w-full'>
         {loading ? (
           <div className="flex justify-center items-center mt-10">
         <div className="loader"></div>
@@ -89,7 +89,7 @@ export default function PetsFilters() {
             Nenhum pet encontrado
           </div>
         ) : (
-          <div className="flex flex-row flex-wrap gap-2 items-center justify-center mt-10 max-w-3xl">
+          <div className="flex flex-row flex-wrap gap-2 items-center justify-start mt-10 max-w-3xl">
             {pets.map((pet, index) => (
           <div
             key={index}
@@ -100,7 +100,7 @@ export default function PetsFilters() {
             ))}
           </div>
         )}
-        <div className="flex justify-center items-center mt-4">
+        <div className="flex justify-center items-center mt-4 mb-4">
           <button
             onClick={() => handlePageChange(page - 1)}
             disabled={page === 0}

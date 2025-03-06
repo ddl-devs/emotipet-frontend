@@ -6,11 +6,13 @@ interface GetPetsParams {
   breed?: string;
   gender?: string;
   species?: string;
+  size?: number;
 }
 
-export const getPets = async ({ page, name, breed, gender, species }: GetPetsParams) => {
+export const getPets = async ({ page, name, breed, gender, species, size = 15 }: GetPetsParams) => {
     const queryParams = new URLSearchParams();
     queryParams.append("page", String(page));
+    queryParams.append("size", String(size));
     if (name) queryParams.append("name", name);
     if (breed) queryParams.append("breed", breed);
     if (gender) queryParams.append("gender", gender);
