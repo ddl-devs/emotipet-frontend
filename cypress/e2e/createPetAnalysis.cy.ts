@@ -4,9 +4,8 @@ describe("Criação de análise de pet", () => {
     });
   
     it("login e criação de uma análise do pet", () => {
-      // Login
-        cy.get('input[name="username"]').type("teste2");
-        cy.get('input[name="password"]').type("admin");
+      cy.get('input[name="username"]').type(Cypress.env("LOGIN_USERNAME"));
+      cy.get('input[name="password"]').type(Cypress.env("LOGIN_PASSWORD"));
 
         cy.get('button[type="submit"]').click();
 
@@ -16,21 +15,16 @@ describe("Criação de análise de pet", () => {
 
         cy.wait(2000);
 
-        // Acessar a aba de análises
         cy.contains("div#pets", "Buddy").click();
         cy.wait(2000);
 
         cy.get('div#analises').find('div').its('length').then((numDivs) => {
-            // Abrir modal de criação de análise
             cy.contains("button", "Criar").click();
             cy.wait(2000);
         
-            // Preencher os campos do formulário
             cy.get('select#tipoAnalise').select("EMOTIONAL");
-            // Adicionar uma foto
             cy.get('input#profileImage').selectFile("cypress/fixtures/bolota.png", { force: true });
             
-            // Submeter o formulário
             cy.contains("button", "Criar Análise").click();
             
             cy.wait(3000);

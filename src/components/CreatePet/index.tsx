@@ -41,13 +41,13 @@ export function CreatePet({ closeModal }: { closeModal: () => void }) {
     }
     try {
       const response = await createPet(form);
-      alert("Pet criado com sucesso!");
+      // alert("Pet criado com sucesso!");
       closeModal();
       window.location.reload();
       console.log(response);
     } catch (error) {
       console.error("Erro ao criar pet:", error);
-      alert("Erro ao criar pet.");
+      // alert("Erro ao criar pet.");
     }
   };
 
@@ -185,8 +185,8 @@ export function CreatePet({ closeModal }: { closeModal: () => void }) {
               placeholder="Digite a data"
               wid="220px"
               onchange={handleInputChange}
-              />
-            
+            />
+
             <ProfileInput
               editable={editable}
               id="weight"
@@ -195,7 +195,7 @@ export function CreatePet({ closeModal }: { closeModal: () => void }) {
               placeholder="Digite o peso"
               wid="220px"
               onchange={handleInputChange}
-              />
+            />
             <ProfileInput
               editable={editable}
               id="height"
@@ -204,7 +204,7 @@ export function CreatePet({ closeModal }: { closeModal: () => void }) {
               placeholder="Digite a altura"
               wid="220px"
               onchange={handleInputChange}
-              />
+            />
           </div>
         </div>
       </div>
