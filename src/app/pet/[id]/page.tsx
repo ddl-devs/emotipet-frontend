@@ -1,4 +1,4 @@
-import { Header } from "@/components/Header";
+import Header from "@/components/Header";
 import { ProfilePet } from "@/components/ProfilePet";
 import AnalysisPetProfile from "@/components/AnalysisPetProfile";
 import RecommendationsPetProfile from '@/components/RecommendationsPetProfile';

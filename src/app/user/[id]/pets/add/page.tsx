@@ -1,5 +1,5 @@
-import { Header } from "@/components/Header";
-import { CreatePet } from "@/components/CreatePet";
+import Header from "@/components/Header";
+import CreatePet from "@/components/CreatePet";
 import AnalysisPetProfile from "@/components/AnalysisPetProfile";
 import RecommendationsPetProfile from '@/components/RecommendationsPetProfile';
 

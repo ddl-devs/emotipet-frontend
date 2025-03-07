@@ -1,4 +1,4 @@
-import { Header } from "@/components/Header";
+import Header from "@/components/Header";
 import { ProfileUser } from "@/components/ProfileUser";
 
 export default function UserPage() {
