@@ -14,6 +14,7 @@ export const getPetAnalysis = async ({ id, startDate, endDate, type, result, pag
     const queryParams = new URLSearchParams();
 
     queryParams.append("page", String(page));
+    queryParams.append("sort", "createdAt,desc");
     if (startDate) queryParams.append("startDate", startDate);
     if (endDate) queryParams.append("endDate", endDate);
     if (type) queryParams.append("type", type);

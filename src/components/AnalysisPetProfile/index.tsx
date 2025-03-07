@@ -64,14 +64,14 @@ export default function AnalysisPetProfile() {
             />
             Criar análise
           </button>
-          {showModal && <CreateAnalysis modal={true} />}
+          {showModal && <CreateAnalysis setShowModal={setShowModal} modal={true} />}
         </div>
         <div className="flex -mt-2 flex-row gap-4 justify-start min-w-[257px] items-end flex-wrap">
           <ProfileInputFilter wid="100px" input={result} label="Resultado" id="result" placeholder="Resultado" onChange={(e) => setResult(e.target.value)} />
           <ProfileInputFilter hei="38px" wid="100px" type="date" input={startDate} label="Data inicial:" id="startDate" placeholder="DD/MM/YYYY" onChange={(e) => setStartDate(e.target.value)} />
           <ProfileInputFilter hei="38px" wid="100px" type="date" input={endDate} label="Data final:" id="endDate" placeholder="DD/MM/YYYY" onChange={(e) => setEndDate(e.target.value)} />
           <ProfileInputFilter options={{EMOTIONAL:"Emoção", BREED:"Raça"}} select={true} wid="100px" input={type} label="Tipo:" id="tipo" placeholder="Tipo" onChange={(e) => setType(e.target.value)} />
-          <ProfileInputFilter options={{IN_ANALYSIS:"Em análise", COMPLETED:"Completo", FAILURE:"Falha"}} select={true} wid="100px" input={type} label="Status:" id="status" placeholder="Status" onChange={(e) => setStatus(e.target.value)} />
+          <ProfileInputFilter options={{IN_ANALYSIS:"Em análise", COMPLETED:"Completo", FAILURE:"Falha"}} select={true} wid="100px" input={status} label="Status:" id="status" placeholder="Status" onChange={(e) => setStatus(e.target.value)} />
           <button onClick={handleFilter} className='gap-1 flex justify-center items-center bg-green rounded-full text-white text-lg font-medium h-10 w-24'>
             <Image
               src="/assets/svg/filter.svg"
