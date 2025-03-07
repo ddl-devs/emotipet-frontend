@@ -1,7 +1,7 @@
 "use server";
 import { cookies } from "next/headers";
 
-const apiUrl = "https://backend.damdevops.com.br";
+const apiUrl = "http://localhost:8080";
 
 const getToken = async () => {
   const cookieStore = await cookies();
@@ -31,7 +31,7 @@ const apiClient = async (
       ...options.headers,
     },
   });
-
+  console.log(response);
   if (response.status === 401) {
     const wwwAuthenticate = response.headers.get("WWW-Authenticate");
     if (
