@@ -41,13 +41,13 @@ export default function CreatePet({ closeModal }: { closeModal: () => void }) {
     }
     try {
       const response = await createPet(form);
-      alert("Pet criado com sucesso!");
+      // alert("Pet criado com sucesso!");
       closeModal();
       window.location.reload();
       console.log(response);
     } catch (error) {
       console.error("Erro ao criar pet:", error);
-      alert("Erro ao criar pet.");
+      // alert("Erro ao criar pet.");
     }
   };
 
