@@ -84,10 +84,10 @@ export default function CreateAnalysis({ modal = false, setShowModal }: Props) {
                 />
               </div>
             </div>
-            <div className='flex gap-4 justify-between items-center flex-row mt-7'>
-              <button onClick={handleCreateAnalysis} className='bg-green rounded-full p-2 text-white text-lg font-semibold w-36'>
+            <div className='flex gap-4 justify-center items-center flex-row mt-7'>
+              <button onClick={handleCreateAnalysis} disabled={loading} className='flex justify-center items-center bg-green rounded-full p-2 text-white text-lg font-semibold w-36'>
                 {loading ? (
-                  <div className="loader"></div> // Indicador de carregamento
+                  <div className="loader"></div>
                 ) : (
                   "Criar Análise"
                 )}

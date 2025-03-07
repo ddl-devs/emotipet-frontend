@@ -112,7 +112,10 @@ export default function RecommendationsPetProfile() {
                     </div>
                 ) : (
                     recommendations.map((recommendation) => (
-                        <RecommendationPetCard key={recommendation.id} markDownText={recommendation.recommendation} text={recommendation.categoryRecommendation}/>
+                        <RecommendationPetCard key={recommendation.id}
+                        markDownText={recommendation.recommendation}
+                        text={recommendation.categoryRecommendation}
+                        createdAt={recommendation.createdAt}/>
                     ))
                 )
                 )}
