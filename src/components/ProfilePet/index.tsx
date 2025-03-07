@@ -200,8 +200,14 @@ export function ProfilePet() {
               id="gender"
               input={formData.gender}
               label="Sexo:"
-              placeholder="Digite o sexo"
-              wid="80px"
+              placeholder="Selecione o sexo"
+              wid="200px"
+              type="select"
+              options={[
+                { value: "MALE", label: "Macho" },
+                { value: "FEMALE", label: "Fêmea" },
+              ]}
+              selected={formData.gender}
               onchange={handleInputChange}
             />
             <ProfileInput

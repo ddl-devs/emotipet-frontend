@@ -17,7 +17,6 @@ export async function putPet(idPet: number, formData: FormData) {
   }
 
   try {
-    console.log("formData", formData);
     const response = await apiClient(`/pets/${idPet}`, {
       method: "PUT",
       body: formData,
