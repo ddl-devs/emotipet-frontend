@@ -97,7 +97,7 @@ export default function AnalysisPetProfile() {
                 Nenhuma análise encontrada
               </div>
             ) : (
-              <div className='flex flex-row flex-wrap gap-2 items-center justify-start mt-10 max-w-3xl'>
+              <div id='analises' className='flex flex-row flex-wrap gap-2 items-center justify-start mt-10 max-w-3xl'>
                 {analyses.map((analysis, index) => (
                   <CardPetAnalysis
                     key={index}

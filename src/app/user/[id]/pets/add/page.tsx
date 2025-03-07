@@ -10,7 +10,7 @@ export default function PetPage() {
       <Header isLogged={true} />
       <main className="mx-14 min-h-screen flex flex-col items-center bg-background text-gray">
         <div className="mt-52">
-          <CreatePet/>
+          <CreatePet closeModal={() => { /* implement close modal functionality here */ }} />
         </div>
       </main>
     </>

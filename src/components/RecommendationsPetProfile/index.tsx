@@ -83,7 +83,7 @@ export default function RecommendationsPetProfile() {
         <div className="flex flex-row gap-4 justify-start min-w-[257px] items-end flex-wrap">
         <ProfileInputFilter options={{ACTIVITIES:"Atividades", HEALTH:"Saúde", PRODUCTS:"Produtos", IMC:"IMC", TRAINING:"Treinamento" }} select={true} wid="100px" input={category} label="Categoria:" id="category-register" placeholder="Categoria" onChange={(e) => setCreateCategory(e.target.value)} />
         {!loadingCreate ? 
-                <button onClick={handleCreateCategory} className="relative mt-0 pl-2 pt-1 font-semibold justify-center items-center flex bg-gradient-to-br from-[#4B9DFA] to-[#5676DE] w-24 h-10 text-white text-lg rounded-full">
+                <button id="criarReco" onClick={handleCreateCategory} className="relative mt-0 pl-2 pt-1 font-semibold justify-center items-center flex bg-gradient-to-br from-[#4B9DFA] to-[#5676DE] w-24 h-10 text-white text-lg rounded-full">
                         <Image
                             src="/assets/svg/iconeIA.svg"
                             alt="Criar análise"
@@ -100,7 +100,7 @@ export default function RecommendationsPetProfile() {
         }
         </div>
         <div className="flex flex-row gap-4 w-full justify-center items-start flex-wrap mt-6">
-            <div className="flex flex-row gap-4 w-full justify-center items-start flex-wrap">
+            <div id="recomendacoes" className="flex flex-row gap-4 w-full justify-center items-start flex-wrap">
                 {loading ? (
                     <div className="flex justify-center items-center">
                         <div className="loader"></div>

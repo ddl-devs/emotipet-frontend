@@ -78,7 +78,7 @@ export default function CreateAnalysis({ modal = false, setShowModal }: Props) {
                   wid="160px"
                   input={analysisType}
                   label="Tipo de análise:"
-                  id="tipo"
+                  id="tipoAnalise"
                   placeholder="Escolher tipo"
                   onChange={(e) => setAnalysisType(e.target.value)}
                 />

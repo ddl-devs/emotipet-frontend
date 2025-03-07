@@ -21,7 +21,7 @@ export default function PetsFilters() {
 
   useEffect(() => {
     const timeouts: NodeJS.Timeout[] = [];
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < pets.length; i++) {
       const timeout = setTimeout(() => {
         setVisibleCards((prev) => [...prev, i]);
       }, i * 200);
@@ -65,7 +65,8 @@ export default function PetsFilters() {
 
   return (
     <>
-      <div className="flex flex-col gap-4">
+      {!isModalOpen? (<div>
+       <div className="flex flex-col gap-4">
         <div className="flex -mt-2 flex-row gap-4 justify-start min-w-[257px] items-end flex-wrap">
           <ProfileInputFilter
             wid="100px"
@@ -136,7 +137,7 @@ export default function PetsFilters() {
                 Nenhum pet encontrado
               </div>
             ) : (
-              <div className="flex flex-row flex-wrap gap-2 items-center justify-start mt-10 max-w-3xl">
+              <div id="pets" className="flex flex-row flex-wrap gap-2 items-center justify-start mt-10 max-w-3xl">
                 {pets.map((pet, index) => (
                   <div
                     key={index}
@@ -172,14 +173,15 @@ export default function PetsFilters() {
               </button>
             </div>
           </>
-        )}
-      </div>
-      {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-4 rounded-lg relative">
+          )}
+        </div>
+      </div> ) :
+       (
+        <div className="flex -ml-3 -mt-28 flex-row gap-4 justify-start min-w-[257px] items-end flex-wrap z-50 bg-opacity-50">
+          <div className="relative">
             <button
               onClick={closeModal}
-              className="absolute top-0 right-2 text-gray-500 hover:text-gray-700 text-3xl"
+              className="absolute top-1 right-4 text-gray z-[60] hover:text-gray-700 text-5xl"
             >
               &times;
             </button>

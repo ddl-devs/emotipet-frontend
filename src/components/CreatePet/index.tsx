@@ -9,7 +9,7 @@ import style from "./style.module.css";
 import { createPet } from "@/actions/createPet";
 
 export function CreatePet({ closeModal }: { closeModal: () => void }) {
-  const [profileImage, setProfileImage] = useState("/assets/images/bolota.png");
+  const [profileImage, setProfileImage] = useState("");
   const [editable, setEditable] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
@@ -40,10 +40,11 @@ export function CreatePet({ closeModal }: { closeModal: () => void }) {
       form.append("photoUrl", formData.profileImage);
     }
     try {
-      await createPet(form);
+      const response = await createPet(form);
       alert("Pet criado com sucesso!");
       closeModal();
       window.location.reload();
+      console.log(response);
     } catch (error) {
       console.error("Erro ao criar pet:", error);
       alert("Erro ao criar pet.");
@@ -67,9 +68,9 @@ export function CreatePet({ closeModal }: { closeModal: () => void }) {
   };
 
   return (
-    <div className="flex relative flex-row">
+    <form onSubmit={handleEditFalse} className="flex relative flex-row">
       <div
-        className={`relative flex flex-col bg-white shadow-lg w-[640px] h-auto justify-center items-center rounded-3xl ${
+        className={`relative flex flex-col bg-white shadow-2xl w-[680px] h-auto justify-center items-center rounded-3xl ${
           editable ? style.profile : ""
         }`}
       >
@@ -82,8 +83,8 @@ export function CreatePet({ closeModal }: { closeModal: () => void }) {
             } bg-green absolute bottom-3 right-3 rounded-full flex items-center justify-center animate-fade-in`}
           >
             <button
-              onClick={handleEditFalse}
-              className="text-lg text-white px-3 font-medium py-1"
+              type="submit"
+              className="text-lg overflow-auto text-white px-3 font-medium py-1"
             >
               Salvar
             </button>
@@ -108,7 +109,7 @@ export function CreatePet({ closeModal }: { closeModal: () => void }) {
                 className="cursor-pointer text-blackGray font-semibold"
                 htmlFor="profileImage"
               >
-                Adicionar foto de perfil
+                Adicionar foto do pet
               </label>
               <input
                 id="profileImage"
@@ -133,8 +134,8 @@ export function CreatePet({ closeModal }: { closeModal: () => void }) {
           </div>
         </div>
 
-        <div className="flex h-auto flex-wrap gap-5 -mt-10 mb-[50px] max-w-[80%] items-start justify-center">
-          <div className="flex flex-wrap gap-5 items-start justify-start">
+        <div className="flex h-auto flex-wrap gap-5 -mt-10 mb-[50px] w-[90%] items-start justify-center">
+          <div className="flex flex-col flex-wrap gap-3 items-start justify-start">
             <ProfileInput
               editable={editable}
               id="breed"
@@ -159,15 +160,13 @@ export function CreatePet({ closeModal }: { closeModal: () => void }) {
               ]}
               onchange={handleInputChange}
             />
-          </div>
-          <div className="flex flex-wrap gap-5 items-start justify-start">
             <ProfileInput
               editable={editable}
               id="gender"
               input={formData.gender}
               label="Sexo:"
               placeholder="Selecione o sexo"
-              wid="200px"
+              wid="220px"
               type="select"
               options={[
                 { value: "MALE", label: "Macho" },
@@ -176,37 +175,39 @@ export function CreatePet({ closeModal }: { closeModal: () => void }) {
               onchange={handleInputChange}
             />
           </div>
-          <div className="flex flex-wrap gap-5 items-start justify-start"></div>
-          <ProfileInput
-            editable={editable}
-            id="weight"
-            input={formData.weight}
-            label="Peso:"
-            placeholder="Digite o peso"
-            wid="70px"
-            onchange={handleInputChange}
-          />
-          <ProfileInput
-            editable={editable}
-            id="height"
-            input={formData.height}
-            label="Altura:"
-            placeholder="Digite a altura"
-            wid="70px"
-            onchange={handleInputChange}
-          />
-          <ProfileInput
-            editable={editable}
-            type="date"
-            id="birthdate"
-            input={formData.birthdate}
-            label="Data de Nascimento:"
-            placeholder="Digite a data"
-            wid="220px"
-            onchange={handleInputChange}
-          />
+          <div className="flex flex-col flex-wrap gap-3 items-start justify-start">
+            <ProfileInput
+              editable={editable}
+              type="date"
+              id="birthdate"
+              input={formData.birthdate}
+              label="Data de Nascimento:"
+              placeholder="Digite a data"
+              wid="220px"
+              onchange={handleInputChange}
+              />
+            
+            <ProfileInput
+              editable={editable}
+              id="weight"
+              input={formData.weight}
+              label="Peso:"
+              placeholder="Digite o peso"
+              wid="220px"
+              onchange={handleInputChange}
+              />
+            <ProfileInput
+              editable={editable}
+              id="height"
+              input={formData.height}
+              label="Altura:"
+              placeholder="Digite a altura"
+              wid="220px"
+              onchange={handleInputChange}
+              />
+          </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 }

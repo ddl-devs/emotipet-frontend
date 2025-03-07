@@ -22,7 +22,6 @@ export default function HomePage() {
             <h1 className="text-5xl font-bold text-orange">Meus Pets</h1>
           </div>
           <PetsFilters/>
-
         </div>
       </main>
     </>
