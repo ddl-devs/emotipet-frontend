@@ -1,6 +1,6 @@
 "use client";
 import { MainImageIndex } from "@/components/MainImageIndex";
-import { Header } from "@/components/Header";
+import Header from "@/components/Header";
 import PetsFilters from "@/components/PetsFilters";
 
 export default function HomePage() {

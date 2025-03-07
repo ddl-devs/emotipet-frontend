@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { authLogin } from "@/actions/login";
-import { Header } from "@/components/Header";
+import Header from "@/components/Header";
 import ProfileInput from "@/components/ProfileInput";
 import Image from "next/image";
 import Typewriter from 'typewriter-effect';

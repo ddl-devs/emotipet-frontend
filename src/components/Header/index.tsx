@@ -8,7 +8,7 @@ interface HeaderProps {
   isLogged: boolean;
 }
 
-export function Header({ isLogged }: HeaderProps) {
+export default function Header({ isLogged }: HeaderProps) {
   return (
     <div className="absolute top-0 right-0 left-0 flex">
       <header className="flex relative items-center justify-between w-full h-auto px-32 py-4 z-20">

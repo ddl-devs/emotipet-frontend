@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { getPets } from "@/actions/getPets";
 import { CardPet } from "@/components/CardPet";
 import { Pet } from "@/types/pets";
-import { CreatePet } from "@/components/CreatePet";
+import CreatePet from "@/components/CreatePet";
 
 export default function PetsFilters() {
   const [name, setName] = useState("");

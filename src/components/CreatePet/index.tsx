@@ -8,7 +8,7 @@ import DeleteButton from "@/components/DeleteButton";
 import style from "./style.module.css";
 import { createPet } from "@/actions/createPet";
 
-export function CreatePet({ closeModal }: { closeModal: () => void }) {
+export default function CreatePet({ closeModal }: { closeModal: () => void }) {
   const [profileImage, setProfileImage] = useState("");
   const [editable, setEditable] = useState(true);
   const [formData, setFormData] = useState({
@@ -91,7 +91,7 @@ export function CreatePet({ closeModal }: { closeModal: () => void }) {
           </div>
         )}
 
-        <div className="items-center justify-center flex flex-col relative -top-[70]">
+        <div className="items-center justify-center flex flex-col relative -top-[70px]">
           {profileImage ? (
             <Image
               src={profileImage}
