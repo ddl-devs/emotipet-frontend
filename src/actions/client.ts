@@ -1,7 +1,7 @@
 "use server";
 import { cookies } from "next/headers";
 
-const apiUrl = "https://backend.damdevops.com.br";
+const apiUrl = "http://localhost:8080";
 
 const getToken = async () => {
   const cookieStore = await cookies();
@@ -45,31 +45,30 @@ const apiClient = async (
           await updateTokens(tokens.access_token, tokens.refresh_token);
           return apiClient(endpoint, options, requiresAuth);
         } catch {
-          const cookieStore = await cookies();
-          cookieStore.delete("token");
-          cookieStore.delete("refreshToken");
+          await clearTokens();
           window.location.href = "/";
           throw new Error("Sessão expirada");
         }
       } else {
-        const cookieStore = await cookies();
-        cookieStore.delete("token");
-        cookieStore.delete("refreshToken");
+        await clearTokens();
         window.location.href = "/";
         throw new Error("Sessão expirada");
       }
     }
   }
+
   if (!response.ok) {
-    const errorData = await response;
+    const errorData = await response.json();
     throw new Error(errorData.message || "Algo deu errado");
   }
+
   if (
     response.status === 204 ||
     response.headers.get("Content-Length") === "0"
   ) {
     return null;
   }
+
   return response.json();
 };
 
@@ -105,6 +104,12 @@ const updateTokens = async (access_token: string, refresh_token: string) => {
 const getRefreshToken = async () => {
   const cookieStore = await cookies();
   return cookieStore.get("refreshToken")?.value || null;
+};
+
+const clearTokens = async () => {
+  const cookieStore = await cookies();
+  cookieStore.delete("token");
+  cookieStore.delete("refreshToken");
 };
 
 export default apiClient;

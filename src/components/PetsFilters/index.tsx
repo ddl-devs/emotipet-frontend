@@ -30,7 +30,7 @@ export default function PetsFilters() {
     return () => {
       timeouts.forEach(clearTimeout);
     };
-  }, []);
+  }, [pets]);
 
   useEffect(() => {
     handleFilter();
