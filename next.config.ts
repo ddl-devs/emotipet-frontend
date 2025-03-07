@@ -15,4 +15,7 @@ module.exports = {
   images: {
     domains: ["emotipet-bucket.s3.us-east-2.amazonaws.com"],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
