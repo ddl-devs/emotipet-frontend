@@ -12,7 +12,7 @@ export default function PetPage() {
         <div className="mt-52">
           <ProfilePet/>
         </div>
-        <div className="flex flex-row w-full gap-5 justify-between items-start mt-20">
+        <div className="bg-whiteGray2  rounded-3xl flex flex-row w-full gap-5 justify-between items-start mt-20">
             <AnalysisPetProfile />
             <RecommendationsPetProfile />
           <div>

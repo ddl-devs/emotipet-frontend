@@ -1,16 +1,143 @@
-import RecommendationPetCard from "../RecommendationPetCard"
+"use client";
+
+import RecommendationPetCard from "../RecommendationPetCard";
+import ProfileInputFilter from "../ProfileInputFilter";
+import { useState, useEffect } from "react";
+import { getRecommendations } from "@/actions/getRecommendations";
+import Image from "next/image";
+import { useParams } from "next/navigation";
+import { Recommendation } from "@/types/recommendation";
+import { createRecommendation } from "@/actions/createRecommendation";
 
 export default function RecommendationsPetProfile() {
+    const [category, setCategory] = useState("");
+    const [createCategory, setCreateCategory] = useState("");
+    const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
+    const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
+    const [loading, setLoading] = useState(false);
+    const [loadingCreate, setLoadingCreate] = useState(false);
+    const params = useParams();
+    const [page, setPage] = useState(0);
+    const id = Array.isArray(params.id) ? params.id[0] : params.id || "";
 
-    return(
-        <div className={`p-3 w-1/2 flex flex-col pt-5 items-start justify-start rounded-3xl`}>
-            <h1 className="text-[40px] font-bold text-orange">Recomendações</h1>
-            <div className="flex mt-10 flex-col gap-3 justify-start items-start w-full">
-                <RecommendationPetCard markDownText='## Cuidados para Affenpinscher Macho (1 ano, 1kg)\n\n*Análise Emocional:*  A análise mostra predominantemente felicidade (60% de precisão em duas medições), com um registro de tristeza (39% de precisão).  A baixa precisão em ambas as classificações indica a necessidade de observação mais cuidadosa do comportamento.\n\n*Cuidados Preventivos:\n\n *Vacinação:* Manter o calendário de vacinação em dia.\n* *Vermifugação:* Programa de desparasitação interna e externa regular, conforme orientação veterinária.\n* *Exames:* Consultas veterinárias regulares (pelo menos anualmente) para check-up completo, incluindo avaliação dentária.  Considerar exames de sangue para avaliação de saúde geral.\n\n*Alimentação:\n\n *Ração:*  Ração seca de alta qualidade, formulada para cães pequenos de raça miniatura, com proteínas de alta digestibilidade.  Evite rações com alto teor de gordura para prevenir obesidade.  A quantidade deve ser ajustada ao peso e nível de atividade.\n* *Porções:* Dividir a ração em várias refeições ao longo do dia.\n* *Água:* Água fresca disponível sempre.\n\n*Cuidados Específicos da Raça:\n\n *Pelagem:* Escovação regular (diária ou a cada dois dias) para prevenir nós e manter a pelagem saudável. Banhos com shampoos específicos para cães.\n* *Dentes:* Escovação regular dos dentes para prevenir problemas dentários comuns em cães pequenos.\n* *Articulações:* Apesar de não ser uma raça com grande propensão a problemas articulares graves, o pequeno porte pode aumentar a vulnerabilidade.  Evitar saltos de grandes alturas e monitorar a atividade física.\n* *Olhos:* Limpeza regular dos olhos, caso necessário, com solução apropriada. Os olhos proeminentes da raça podem ser mais propensos a irritações.\n\n*Considerações Adicionais:\n\n *Enriquecimento ambiental:* Brincadeiras, interação e atividades para estimular o cão mental e fisicamente, auxiliando na prevenção de comportamentos indesejáveis e promovendo o bem-estar emocional.  Observar o comportamento para identificar sinais de tristeza ou ansiedade (apatia, falta de apetite, mudanças no sono).  Se necessário, procurar ajuda de um veterinário comportamental.\n* *Monitoramento:* Devido à baixa precisão das análises emocionais, é crucial monitorar o comportamento do cão diariamente, observando alterações no humor, apetite, sono e interação social.\n\n*Observação:*  Estas são recomendações gerais.  Um veterinário deve ser consultado para um plano de cuidados personalizado e adaptado às necessidades específicas do seu cão.\n' text="Qual é a melhor alimentação para o meu pet ?"/>
-                <RecommendationPetCard markDownText="## Cuidados para Affenpinscher Macho (1 ano, 1kg)\n\n*Análise Emocional:*  A análise mostra predominantemente felicidade (60% de precisão em duas medições), com um registro de tristeza (39% de precisão).  A baixa precisão em ambas as classificações indica a necessidade de observação mais cuidadosa do comportamento.\n\n*Cuidados Preventivos:\n\n *Vacinação:* Manter o calendário de vacinação em dia.\n* *Vermifugação:* Programa de desparasitação interna e externa regular, conforme orientação veterinária.\n* *Exames:* Consultas veterinárias regulares (pelo menos anualmente) para check-up completo, incluindo avaliação dentária.  Considerar exames de sangue para avaliação de saúde geral.\n\n*Alimentação:\n\n *Ração:*  Ração seca de alta qualidade, formulada para cães pequenos de raça miniatura, com proteínas de alta digestibilidade.  Evite rações com alto teor de gordura para prevenir obesidade.  A quantidade deve ser ajustada ao peso e nível de atividade.\n* *Porções:* Dividir a ração em várias refeições ao longo do dia.\n* *Água:* Água fresca disponível sempre.\n\n*Cuidados Específicos da Raça:\n\n *Pelagem:* Escovação regular (diária ou a cada dois dias) para prevenir nós e manter a pelagem saudável. Banhos com shampoos específicos para cães.\n* *Dentes:* Escovação regular dos dentes para prevenir problemas dentários comuns em cães pequenos.\n* *Articulações:* Apesar de não ser uma raça com grande propensão a problemas articulares graves, o pequeno porte pode aumentar a vulnerabilidade.  Evitar saltos de grandes alturas e monitorar a atividade física.\n* *Olhos:* Limpeza regular dos olhos, caso necessário, com solução apropriada. Os olhos proeminentes da raça podem ser mais propensos a irritações.\n\n*Considerações Adicionais:\n\n *Enriquecimento ambiental:* Brincadeiras, interação e atividades para estimular o cão mental e fisicamente, auxiliando na prevenção de comportamentos indesejáveis e promovendo o bem-estar emocional.  Observar o comportamento para identificar sinais de tristeza ou ansiedade (apatia, falta de apetite, mudanças no sono).  Se necessário, procurar ajuda de um veterinário comportamental.\n* *Monitoramento:* Devido à baixa precisão das análises emocionais, é crucial monitorar o comportamento do cão diariamente, observando alterações no humor, apetite, sono e interação social.\n\n*Observação:*  Estas são recomendações gerais.  Um veterinário deve ser consultado para um plano de cuidados personalizado e adaptado às necessidades específicas do seu cão.\n" text="Qual é a melhor alimentação para o meu pet ?"/>
-                <RecommendationPetCard markDownText="## Cuidados para Affenpinscher Macho (1 ano, 1kg)\n\n*Análise Emocional:*  A análise mostra predominantemente felicidade (60% de precisão em duas medições), com um registro de tristeza (39% de precisão).  A baixa precisão em ambas as classificações indica a necessidade de observação mais cuidadosa do comportamento.\n\n*Cuidados Preventivos:\n\n *Vacinação:* Manter o calendário de vacinação em dia.\n* *Vermifugação:* Programa de desparasitação interna e externa regular, conforme orientação veterinária.\n* *Exames:* Consultas veterinárias regulares (pelo menos anualmente) para check-up completo, incluindo avaliação dentária.  Considerar exames de sangue para avaliação de saúde geral.\n\n*Alimentação:\n\n *Ração:*  Ração seca de alta qualidade, formulada para cães pequenos de raça miniatura, com proteínas de alta digestibilidade.  Evite rações com alto teor de gordura para prevenir obesidade.  A quantidade deve ser ajustada ao peso e nível de atividade.\n* *Porções:* Dividir a ração em várias refeições ao longo do dia.\n* *Água:* Água fresca disponível sempre.\n\n*Cuidados Específicos da Raça:\n\n *Pelagem:* Escovação regular (diária ou a cada dois dias) para prevenir nós e manter a pelagem saudável. Banhos com shampoos específicos para cães.\n* *Dentes:* Escovação regular dos dentes para prevenir problemas dentários comuns em cães pequenos.\n* *Articulações:* Apesar de não ser uma raça com grande propensão a problemas articulares graves, o pequeno porte pode aumentar a vulnerabilidade.  Evitar saltos de grandes alturas e monitorar a atividade física.\n* *Olhos:* Limpeza regular dos olhos, caso necessário, com solução apropriada. Os olhos proeminentes da raça podem ser mais propensos a irritações.\n\n*Considerações Adicionais:\n\n *Enriquecimento ambiental:* Brincadeiras, interação e atividades para estimular o cão mental e fisicamente, auxiliando na prevenção de comportamentos indesejáveis e promovendo o bem-estar emocional.  Observar o comportamento para identificar sinais de tristeza ou ansiedade (apatia, falta de apetite, mudanças no sono).  Se necessário, procurar ajuda de um veterinário comportamental.\n* *Monitoramento:* Devido à baixa precisão das análises emocionais, é crucial monitorar o comportamento do cão diariamente, observando alterações no humor, apetite, sono e interação social.\n\n*Observação:*  Estas são recomendações gerais.  Um veterinário deve ser consultado para um plano de cuidados personalizado e adaptado às necessidades específicas do seu cão.\n" text="Qual é a melhor alimentação para o meu pet ?"/>
+
+    const handleFilter = async () => {
+        setLoading(true);
+        try {
+            const response = await getRecommendations({ id, category, startDate, endDate, page });
+            setRecommendations(response.content);
+        } catch (error) {
+            console.error("Erro ao obter recomendações:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        handleFilter();
+    }, []);
+
+    useEffect(() => {
+        handleFilter();
+    }, [page]); 
+    
+    const handlePageChange = (newPage: number) => {
+        if (newPage >= 0) {
+            setPage(newPage);
+        }
+    };
+
+    const handleCreateCategory = async () => {
+        setLoadingCreate(true);
+        try {
+            const response = await createRecommendation({ id, createCategory });
+            setLoadingCreate(false);
+            handleFilter();
+        } catch (error) {
+            console.error("Erro ao obter recomendações:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+  return (
+    <div className={`p-3 w-1/2 flex flex-col pt-5 items-start justify-start rounded-3xl`}>
+      <h1 className="text-[40px] font-bold text-orange">Recomendações</h1>
+      <div className="flex flex-col gap-3 justify-start items-start w-full">
+        <div className="flex mt-4 flex-row gap-4 justify-start min-w-[257px] items-end flex-wrap">
+            <ProfileInputFilter options={{ACTIVITIES:"Atividades", HEALTH:"Saúde", PRODUCTS:"Produtos", IMC:"IMC", TRAINING:"Treinamento" }} select={true} wid="100px" input={category} label="Categoria:" id="category" placeholder="Categoria" onChange={(e) => setCategory(e.target.value)} />
+            <ProfileInputFilter hei="38px" wid="100px" type="date" input={startDate} label="Data inicial:" id="startDate" placeholder="DD/MM/YYYY" onChange={(e) => setStartDate(e.target.value)} />
+            <ProfileInputFilter hei="38px" wid="100px" type="date" input={endDate} label="Data final:" id="endDate" placeholder="DD/MM/YYYY" onChange={(e) => setEndDate(e.target.value)} />
+            <button onClick={handleFilter} className='gap-1 flex justify-center items-center bg-green rounded-full text-white text-lg font-medium h-10 w-24'>
+            <Image
+              src="/assets/svg/filter.svg"
+              alt="Filtrar"
+              width={15}
+              height={15}
+              className=""
+            />
+            Filtrar
+            </button>
+        </div>
+        <div className="flex flex-row gap-4 justify-start min-w-[257px] items-end flex-wrap">
+        <ProfileInputFilter options={{ACTIVITIES:"Atividades", HEALTH:"Saúde", PRODUCTS:"Produtos", IMC:"IMC", TRAINING:"Treinamento" }} select={true} wid="100px" input={category} label="Categoria:" id="category-register" placeholder="Categoria" onChange={(e) => setCreateCategory(e.target.value)} />
+        {!loadingCreate ? 
+                <button onClick={handleCreateCategory} className="relative mt-0 pl-2 pt-1 font-semibold justify-center items-center flex bg-gradient-to-br from-[#4B9DFA] to-[#5676DE] w-24 h-10 text-white text-lg rounded-full">
+                        <Image
+                            src="/assets/svg/iconeIA.svg"
+                            alt="Criar análise"
+                            width={18}
+                            height={18}
+                            className="absolute left-0 top-1.5 left-2"
+                        />
+                        Criar
+                </button>
+            :
+            <div className="flex justify-center items-center mt-5">
+                <div className="loader"></div>
+            </div>
+        }
+        </div>
+        <div className="flex flex-row gap-4 w-full justify-center items-start flex-wrap mt-6">
+            <div className="flex flex-row gap-4 w-full justify-center items-start flex-wrap">
+                {loading ? (
+                    <div className="flex justify-center items-center">
+                        <div className="loader"></div>
+                    </div>
+                ) : (
+                !recommendations || recommendations.length === 0 ? (
+                    <div className="flex justify-center items-center">
+                    Nenhuma recomendação encontrada
+                    </div>
+                ) : (
+                    recommendations.map((recommendation) => (
+                        <RecommendationPetCard key={recommendation.id}
+                        markDownText={recommendation.recommendation}
+                        text={recommendation.categoryRecommendation}
+                        createdAt={recommendation.createdAt}/>
+                    ))
+                )
+                )}
+            </div>
+            <div className="flex justify-center items-center mt-4 mb-4">
+                <button
+                    onClick={() => handlePageChange(page - 1)}
+                    disabled={page === 0}
+                    className="bg-gray-300 text-gray-700 px-4 py-2 rounded-l"
+                >
+                    &lt;
+                </button>
+                <span className="bg-gray-200 text-gray-700 px-4 py-2">{page + 1}</span>
+                <button
+                    onClick={() => handlePageChange(page + 1)}
+                    className="bg-gray-300 text-gray-700 px-4 py-2 rounded-r"
+                >
+                    &gt;
+                </button>
             </div>
         </div>
-    )
-
+      </div>
+    </div>
+  );
 }

@@ -13,6 +13,7 @@ interface InputProps {
   id: string;
   placeholder: string;
   wid: string;
+  hei?: string;
   classNm?: string;
   type?: string;
   select?: boolean;
@@ -25,6 +26,7 @@ export default function ProfileInputFilter({
   options,
   type,
   label,
+  hei,
   input,
   id,
   placeholder,
@@ -33,6 +35,19 @@ export default function ProfileInputFilter({
   onChange,
 }: InputProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+
+  const handleDateChange = (date: Date | null) => {
+    setSelectedDate(date);
+    if (onChange) {
+      const event = {
+        target: {
+          value: date ? date.toISOString().split('T')[0] : '',
+          name: id,
+        },
+      } as React.ChangeEvent<HTMLInputElement>;
+      onChange(event);
+    }
+  };
 
   return select ? (
     <div>
@@ -68,11 +83,12 @@ export default function ProfileInputFilter({
         {label}
       </label>
       <div
-        style={{ width: wid }}
-        className="px-[10px] flex w-auto py-1 bg-transparent border border-blue rounded-[10px]"
+        style={{ width: wid, height: hei ? hei : "auto" }}
+        className="px-[10px] flex w-auto py-1 bg-transparent items-center border border-blue rounded-[10px]"
       >
         <DatePicker
           selected={selectedDate}
+          onChange={handleDateChange}
           className={`text-center w-full bg-transparent text-blue outline-none ${
             classNm ? classNm : "text-base font-semibold"
           }`}
