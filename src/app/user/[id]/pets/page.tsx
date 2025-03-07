@@ -3,6 +3,7 @@
 import CardPet from "@/components/CardPet";
 import Header from "@/components/Header";
 import MainImageIndex from "@/components/MainImageIndex";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
