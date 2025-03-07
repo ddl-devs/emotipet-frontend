@@ -18,6 +18,8 @@ interface InputProps {
   type?: string;
   onchange?: (e: any) => void;
   require?: boolean;
+  options?: { value: string; label: string }[];
+  selected?: string;
 }
 
 export default function ProfileInput({
@@ -32,6 +34,8 @@ export default function ProfileInput({
   editable = false,
   color = "purple",
   classNm = "",
+  options,
+  selected,
 }: InputProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
@@ -49,23 +53,45 @@ export default function ProfileInput({
       <div
         style={{ width: wid }}
         className="px-[10px] flex w-auto py-1 bg-whiteGray2 rounded-[10px]"
-        >
-        <input
-          required={require}
-          type={type}
-          readOnly={!editable}
-          name={id}
-          id={id}
-          defaultValue={input}
-          onChange={onchange}
-          className={`text-center w-full bg-transparent text-${
-            editable ? "blackGray" : color
+      >
+        {type === "select" && options ? (
+          <select
+            required={require}
+            name={id}
+            id={id}
+            value={input} // Use the input property here
+            onChange={onchange}
+            className={`text-center w-full bg-transparent text-${
+              editable ? "blackGray" : color
+            } outline-none ${classNm ? classNm : "text-lg font-semibold"}`}
+            title={label}
+          >
+            <option value="" disabled>
+              {placeholder}
+            </option>
+            {options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        ) : (
+          <input
+            required={require}
+            type={type}
+            readOnly={!editable}
+            name={id}
+            id={id}
+            defaultValue={input}
+            onChange={onchange}
+            className={`text-center w-full bg-transparent text-${
+              editable ? "blackGray" : color
             } outline-none ${classNm ? classNm : "text-lg font-semibold"}`}
             title={label}
             placeholder={placeholder}
-            />
+          />
+        )}
       </div>
     </div>
-  )
-  
+  );
 }

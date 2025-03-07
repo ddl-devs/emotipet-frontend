@@ -59,7 +59,9 @@ export function CreatePet({ closeModal }: { closeModal: () => void }) {
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
   };
@@ -132,65 +134,77 @@ export function CreatePet({ closeModal }: { closeModal: () => void }) {
         </div>
 
         <div className="flex h-auto flex-wrap gap-5 -mt-10 mb-[50px] max-w-[80%] items-start justify-center">
-          <div className="gap-5 flex items-start flex-col">
+          <div className="flex flex-wrap gap-5 items-start justify-start">
             <ProfileInput
               editable={editable}
               id="breed"
-              input=""
+              input={formData.breed}
               label="Raça:"
               placeholder="Digite uma raça"
               wid="220px"
               onchange={handleInputChange}
             />
-            <ProfileInput
-              editable={editable}
-              type="date"
-              id="birthdate"
-              input=""
-              label="Data de Nascimento:"
-              placeholder="Digite a data"
-              wid="220px"
-              onchange={handleInputChange}
-            />
+
             <ProfileInput
               editable={editable}
               id="species"
-              input=""
+              input={formData.species}
               label="Espécie:"
-              placeholder="Digite a espécie"
+              placeholder="Selecione a espécie"
               wid="220px"
+              type="select"
+              options={[
+                { value: "DOG", label: "Cachorro" },
+                { value: "CAT", label: "Gato" },
+              ]}
               onchange={handleInputChange}
             />
           </div>
           <div className="flex flex-wrap gap-5 items-start justify-start">
             <ProfileInput
               editable={editable}
-              id="weight"
-              input=""
-              label="Peso:"
-              placeholder="Digite o peso"
-              wid="70px"
-              onchange={handleInputChange}
-            />
-            <ProfileInput
-              editable={editable}
               id="gender"
-              input=""
+              input={formData.gender}
               label="Sexo:"
-              placeholder="Digite o sexo"
-              wid="80px"
-              onchange={handleInputChange}
-            />
-            <ProfileInput
-              editable={editable}
-              id="height"
-              input=""
-              label="Altura:"
-              placeholder="Digite a altura"
-              wid="70px"
+              placeholder="Selecione o sexo"
+              wid="200px"
+              type="select"
+              options={[
+                { value: "MALE", label: "Macho" },
+                { value: "FEMALE", label: "Fêmea" },
+              ]}
               onchange={handleInputChange}
             />
           </div>
+          <div className="flex flex-wrap gap-5 items-start justify-start"></div>
+          <ProfileInput
+            editable={editable}
+            id="weight"
+            input={formData.weight}
+            label="Peso:"
+            placeholder="Digite o peso"
+            wid="70px"
+            onchange={handleInputChange}
+          />
+          <ProfileInput
+            editable={editable}
+            id="height"
+            input={formData.height}
+            label="Altura:"
+            placeholder="Digite a altura"
+            wid="70px"
+            onchange={handleInputChange}
+          />
+          <ProfileInput
+            editable={editable}
+            type="date"
+            id="birthdate"
+            input={formData.birthdate}
+            label="Data de Nascimento:"
+            placeholder="Digite a data"
+            wid="220px"
+            onchange={handleInputChange}
+          />
         </div>
       </div>
     </div>
