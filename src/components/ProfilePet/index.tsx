@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import ProfileInput from "@/components/ProfileInput";
 import EditButton from "@/components/EditButton";
 import DeleteButton from "@/components/DeleteButton";
@@ -10,12 +11,14 @@ import style from "./style.module.css";
 import { useParams } from "next/navigation";
 import { getPet } from "@/actions/getPet";
 import { putPet } from "@/actions/putPet";
+import { deletePet } from "@/actions/deletePet";
 import { Pet } from "@/types/pets";
 
 export function ProfilePet() {
   const [profileImage, setProfileImage] = useState("/assets/images/bolota.png");
   const [editable, setEditable] = useState(false);
   const [pet, setPet] = useState<Pet | null>(null);
+  const router = useRouter();
 
   const params = useParams();
   const { id } = params;
@@ -88,6 +91,13 @@ export function ProfilePet() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
+  };
+
+  const handleDelete = async () => {
+    if (pet?.id) {
+      await deletePet(pet.id);
+      router.push("/home");
+    }
   };
 
   return (
@@ -208,7 +218,7 @@ export function ProfilePet() {
       </div>
       <div className="absolute left-[calc(50%+320px)] flex flex-col ml-3 mt-1 gap-4">
         <EditButton click={handleEditTrue} />
-        <DeleteButton />
+        <DeleteButton click={handleDelete} />
       </div>
     </div>
   );
