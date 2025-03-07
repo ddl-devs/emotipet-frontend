@@ -31,7 +31,7 @@ const apiClient = async (
       ...options.headers,
     },
   });
-  console.log(response);
+
   if (response.status === 401) {
     const wwwAuthenticate = response.headers.get("WWW-Authenticate");
     if (
@@ -45,16 +45,23 @@ const apiClient = async (
           await updateTokens(tokens.access_token, tokens.refresh_token);
           return apiClient(endpoint, options, requiresAuth);
         } catch {
+          const cookieStore = await cookies();
+          cookieStore.delete("token");
+          cookieStore.delete("refreshToken");
+          window.location.href = "/";
           throw new Error("Sessão expirada");
         }
       } else {
+        const cookieStore = await cookies();
+        cookieStore.delete("token");
+        cookieStore.delete("refreshToken");
+        window.location.href = "/";
         throw new Error("Sessão expirada");
       }
     }
   }
-
   if (!response.ok) {
-    const errorData = await response.json();
+    const errorData = await response;
     throw new Error(errorData.message || "Algo deu errado");
   }
   if (

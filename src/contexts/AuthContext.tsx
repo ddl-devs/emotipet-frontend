@@ -29,12 +29,11 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const token = (getCookie("token") as string) || null;
+  const [token, setToken] = useState<string | null>(getCookie("token") as string || null);
   const router = useRouter();
 
   const logout = () => {
     setUser(null);
-
     deleteCookie("token");
     deleteCookie("refreshToken");
     router.push("/");
@@ -42,24 +41,34 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const loadUser = async () => {
-      try {
-        if (token) {
-          try {
-            const userData = await getMe(token);
-            setUser(userData);
-          } catch (err) {
-            setUser(null);
-            logout();
-          }
-        } else {
+      if (token) {
+        try {
+          const userData = await getMe(token);
+          setUser(userData);
+        } catch (err) {
           setUser(null);
+          logout();
         }
-      } catch (error) {
+      } else {
         setUser(null);
       }
     };
 
     loadUser();
+  }, [token]);
+
+  useEffect(() => {
+    const handleTokenChange = () => {
+      const newToken = getCookie("token") as string || null;
+      if (newToken !== token) {
+        setToken(newToken);
+      }
+    };
+
+    window.addEventListener("focus", handleTokenChange);
+    return () => {
+      window.removeEventListener("focus", handleTokenChange);
+    };
   }, [token]);
 
   return (

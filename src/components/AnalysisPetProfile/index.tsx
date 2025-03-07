@@ -50,23 +50,13 @@ export default function AnalysisPetProfile() {
   };
 
   return (
-    <div className={`bg-whiteGray2 p-3 w-1/2 left-0 flex flex-col pt-5 items-start justify-start rounded-3xl mb-10`}>
+    <div className={` p-3 w-1/2 left-0 flex flex-col pt-5 items-start justify-start rounded-3xl mb-10`}>
       <div className='flex flex-row gap-3 justify-start items-start w-full'>
         <div className='flex flex-row gap-3 flex-wrap justify-center items-center'>
           <h1 className="text-[40px] font-bold text-orange">Análises</h1>
-          <button onClick={() => setShowModal(true)} className="mt-0 pl-2 pt-1 font-semibold justify-center items-center flex bg-gradient-to-br from-[#4B9DFA] to-[#5676DE] w-[150px] h-[50px] text-white text-lg rounded-full">
-            <Image
-              src="/assets/svg/iconeIA.svg"
-              alt="Criar análise"
-              width={18}
-              height={18}
-              className=" -ml-28 -mt-4 absolute "
-            />
-            Criar análise
-          </button>
-          {showModal && <CreateAnalysis setShowModal={setShowModal} modal={true} />}
         </div>
-        <div className="flex -mt-2 flex-row gap-4 justify-start min-w-[257px] items-end flex-wrap">
+      </div>
+        <div className="flex mt-4 flex-row gap-4 justify-start min-w-[257px] items-end flex-wrap">
           <ProfileInputFilter wid="100px" input={result} label="Resultado" id="result" placeholder="Resultado" onChange={(e) => setResult(e.target.value)} />
           <ProfileInputFilter hei="38px" wid="100px" type="date" input={startDate} label="Data inicial:" id="startDate" placeholder="DD/MM/YYYY" onChange={(e) => setStartDate(e.target.value)} />
           <ProfileInputFilter hei="38px" wid="100px" type="date" input={endDate} label="Data final:" id="endDate" placeholder="DD/MM/YYYY" onChange={(e) => setEndDate(e.target.value)} />
@@ -82,8 +72,18 @@ export default function AnalysisPetProfile() {
             />
             Filtrar
           </button>
+          <button onClick={() => setShowModal(true)} className="relative mt-0 pl-2 pt-1 font-semibold justify-center items-center flex bg-gradient-to-br from-[#4B9DFA] to-[#5676DE] w-24 h-10 text-white text-lg rounded-full">
+            <Image
+              src="/assets/svg/iconeIA.svg"
+              alt="Criar análise"
+              width={18}
+              height={18}
+              className="absolute left-0 top-1.5 left-2"
+            />
+            Criar
+          </button>
+          {showModal && <CreateAnalysis setShowModal={setShowModal} modal={true} />}
         </div>
-      </div>
 
       <div className='mt-5 flex flex-wrap flex-col gap-2 justify-center w-full'>
         <div>
@@ -97,7 +97,7 @@ export default function AnalysisPetProfile() {
                 Nenhuma análise encontrada
               </div>
             ) : (
-              <div className='flex flex-row flex-wrap gap-2 items-center justify-center mt-10 max-w-3xl'>
+              <div className='flex flex-row flex-wrap gap-2 items-center justify-start mt-10 max-w-3xl'>
                 {analyses.map((analysis, index) => (
                   <CardPetAnalysis
                     key={index}
