@@ -1,4 +1,4 @@
-interface Analysis {
+export default interface Analysis {
 	id: number,
 	createdAt: string,
 	updatedAt: string,

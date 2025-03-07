@@ -12,9 +12,9 @@ import { useParams } from "next/navigation";
 import { getPet } from "@/actions/getPet";
 import { putPet } from "@/actions/putPet";
 import { deletePet } from "@/actions/deletePet";
-import { Pet } from "@/types/pets";
+import Pet from "@/types/pets";
 
-export function ProfilePet() {
+export default function ProfilePet() {
   const [profileImage, setProfileImage] = useState("/assets/images/bolota.png");
   const [editable, setEditable] = useState(false);
   const [pet, setPet] = useState<Pet | null>(null);
@@ -124,7 +124,7 @@ export function ProfilePet() {
           </div>
         )}
 
-        <div className="items-center justify-center flex flex-col relative -top-[70]">
+        <div className="items-center justify-center flex flex-col relative -top-[70px]">
           <Image
             src={pet?.photoUrl ?? profileImage}
             alt="Bolota"
@@ -163,7 +163,7 @@ export function ProfilePet() {
           </div>
         </div>
 
-        <div className="flex h-auto flex-wrap gap-5 -mt-10 mb-[50px] max-w-[80%] items-start justify-center">
+        <div className="flex h-auto flex-row flex-wrap gap-5 -mt-10 mb-[50px] max-w-[80%] items-start justify-center">
           <div className="gap-5 flex items-start flex-col">
             <ProfileInput
               editable={editable}
@@ -185,16 +185,27 @@ export function ProfilePet() {
               onchange={handleInputChange}
             />
           </div>
-          <div className="flex flex-wrap gap-5 items-start justify-start">
-            <ProfileInput
-              editable={editable}
-              id="weight"
-              input={formData.weight}
-              label="Peso:"
-              placeholder="Digite o peso"
-              wid="70px"
-              onchange={handleInputChange}
-            />
+          <div className="flex flex-col flex-wrap gap-5 items-start justify-start">
+            <div className="flex flex-row gap-5 items-start justify-start">
+              <ProfileInput
+                editable={editable}
+                id="weight"
+                input={formData.weight}
+                label="Peso:"
+                placeholder="Digite o peso"
+                wid="70px"
+                onchange={handleInputChange}
+                />
+                <ProfileInput
+                editable={editable}
+                id="height"
+                input={formData.height}
+                label="Altura:"
+                placeholder="Digite a altura"
+                wid="70px"
+                onchange={handleInputChange}
+                />
+            </div>
             <ProfileInput
               editable={editable}
               id="gender"
@@ -208,15 +219,6 @@ export function ProfilePet() {
                 { value: "FEMALE", label: "Fêmea" },
               ]}
               selected={formData.gender}
-              onchange={handleInputChange}
-            />
-            <ProfileInput
-              editable={editable}
-              id="height"
-              input={formData.height}
-              label="Altura:"
-              placeholder="Digite a altura"
-              wid="70px"
               onchange={handleInputChange}
             />
           </div>

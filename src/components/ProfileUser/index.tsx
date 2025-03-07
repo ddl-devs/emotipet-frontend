@@ -99,7 +99,7 @@ export function ProfileUser() {
           </div>
         )}
 
-        <div className="items-center justify-center flex flex-col relative -top-[70]">
+        <div className="items-center justify-center flex flex-col relative -top-[70px]">
           <Image
             src={user?.photoUrl || profileImage}
             alt="Bolota"

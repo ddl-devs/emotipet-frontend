@@ -10,7 +10,7 @@ import { deleteCookie } from "cookies-next";
 import { useAuth } from "@/contexts/AuthContext";
 import { set } from "date-fns";
 
-export function ButtonHeader() {
+export default function ButtonHeader() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState("");
   const modalRef = useRef<HTMLDivElement | null>(null);

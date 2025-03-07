@@ -6,7 +6,7 @@ import style from "@/components/MainImageIndex/style.module.css";
 import Typewriter from 'typewriter-effect'; 
 
 
-export function MainImageIndex() {
+export default function MainImageIndex() {
   const [Text] = useState([
     "Qual é a comida preferida do meu pet?",
     "Qual é a brincadeira preferida do meu pet?",

@@ -2,11 +2,12 @@
 
 import Image from 'next/image';
 import ProfileInputFilter from '../ProfileInputFilter';
-import { CardPetAnalysis } from '../CardPetAnalysis';
+import CardPetAnalysis from '../CardPetAnalysis';
 import CreateAnalysis from '../CreateAnalysis';
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { getPetAnalysis } from '@/actions/getPetAnalysis';
+import Analysis from '@/types/analysis';
 
 export default function AnalysisPetProfile() {
   const [showModal, setShowModal] = useState(false);
@@ -78,7 +79,7 @@ export default function AnalysisPetProfile() {
               alt="Criar análise"
               width={18}
               height={18}
-              className="absolute left-0 top-1.5 left-2"
+              className="absolute top-1.5 left-3"
             />
             Criar
           </button>

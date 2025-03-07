@@ -6,8 +6,8 @@ import { useState, useEffect } from "react";
 import { getRecommendations } from "@/actions/getRecommendations";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import { Recommendation } from "@/types/recommendation";
-import { createRecommendation } from "@/actions/createRecommendation";
+import Recommendation from "@/types/recommendation";
+import { createRecommendation} from "@/actions/createRecommendation";
 
 export default function RecommendationsPetProfile() {
     const [category, setCategory] = useState("");
@@ -89,7 +89,7 @@ export default function RecommendationsPetProfile() {
                             alt="Criar análise"
                             width={18}
                             height={18}
-                            className="absolute left-0 top-1.5 left-2"
+                            className="absolute left-3 top-1.5"
                         />
                         Criar
                 </button>
