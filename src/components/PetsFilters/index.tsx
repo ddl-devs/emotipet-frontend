@@ -4,8 +4,10 @@ import Image from "next/image";
 import ProfileInputFilter from "../ProfileInputFilter";
 import { useState, useEffect } from "react";
 import { getPets } from "@/actions/getPets";
-import { CardPet } from "@/components/CardPet";
-import { Pet } from "@/types/pets";
+
+import CardPet from "@/components/CardPet";
+import Pet from "@/types/pets";
+
 import CreatePet from "@/components/CreatePet";
 
 export default function PetsFilters() {

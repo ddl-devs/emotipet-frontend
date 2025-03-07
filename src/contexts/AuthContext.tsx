@@ -7,7 +7,7 @@ import React, {
   useEffect,
 } from "react";
 import { deleteCookie, getCookie } from "cookies-next";
-import { User } from "@/types/user";
+import User from "@/types/user";
 import { useRouter } from "next/navigation";
 import getMe from "@/actions/getMe";
 

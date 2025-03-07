@@ -13,7 +13,7 @@ interface cardPetAnalysisProps {
   picture: string
 }
 
-export function CardPetAnalysis(props: cardPetAnalysisProps) {
+export default function CardPetAnalysis(props: cardPetAnalysisProps) {
 
   const [showDetail, setShowDetail] = useState(false);
 

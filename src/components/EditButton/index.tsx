@@ -1,5 +1,4 @@
-import Image from 'next/image'; // Import the Image component from the appropriate package
-import EditiButton from '../../../public/assets/svg/EditButton.svg'; // Import the EditButton component from the appropriate path
+import Image from 'next/image';
 
 interface ButtonProps {
     click: () => void;
@@ -7,10 +6,10 @@ interface ButtonProps {
 
 export default function EditButton({ click }: ButtonProps) {
     return (
-        <div>
+        <div className='ml-5'>
             <button className="flex flex-row gap-2 justify-center items-center" onClick={click}>
-                <EditiButton className=""/>
-                <p className='text-lg text-white'>Editar</p>
+                <Image src="/assets/svg/EditButton.svg" width={25} height={28} alt="Editar" />
+                <p className='text-lg text-blue'>Editar</p>
             </button>
         </div>
     );

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ButtonHeader } from "../ButtonHeader";
+import ButtonHeader from "../ButtonHeader";
 
 interface HeaderProps {
   isLogged: boolean;

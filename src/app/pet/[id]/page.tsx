@@ -1,8 +1,9 @@
 import Header from "@/components/Header";
-import { ProfilePet } from "@/components/ProfilePet";
+
+import ProfilePet from "@/components/ProfilePet";
+
 import AnalysisPetProfile from "@/components/AnalysisPetProfile";
 import RecommendationsPetProfile from '@/components/RecommendationsPetProfile';
-
 
 export default function PetPage() {
   return (

@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import DeletButton from "../../../public/assets/svg/DeletButton.svg";
 import { useState } from "react";
 
 interface DeleteButtonProps {
@@ -17,13 +16,13 @@ export default function DeleteButton({ click }: DeleteButtonProps) {
   };
 
   return (
-    <div className="relative">
+    <div className="relative ml-5">
       <button
         className="flex flex-row gap-2 justify-center items-center"
         onClick={() => setIsModalOpen(true)}
       >
-        <DeletButton className="" />
-        <p className="text-lg text-white">Excluir</p>
+        <Image src="/assets/svg/DeletButton.svg" width={25} height={28} alt="Deletar" />
+        <p className="text-lg text-red">Excluir</p>
       </button>
       {isModalOpen && (
         <div className="fixed z-50 inset-0 bg-black bg-opacity-50 flex justify-center items-center">

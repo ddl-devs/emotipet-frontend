@@ -1,4 +1,4 @@
-export interface Pet {
+export default interface Pet {
   id: number;
   createdAt: string;
   updatedAt: string;

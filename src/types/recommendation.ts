@@ -1,4 +1,4 @@
-export interface Recommendation {
+export default interface Recommendation {
 	id: number,
 	createdAt: string,
 	updatedAt: string,
